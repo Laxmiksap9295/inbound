@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog   class="Dialog sapUiSizeCompact" >
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Title3}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseQueue" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<HBox class="sapUiTinyMarginBegin sapUiTinyMarginEnd">-->
+			<Toolbar class="InboundToolbarbrdr sapUiSmallMarginTop">
+				<ToolbarSpacer>
+				</ToolbarSpacer>
+					<Button id="id_Queue1" text="{i18n>Text19}" press="onPressQueuing" class="Inbound_BtnClr2" width="7rem"></Button>
+				<ToolbarSpacer>
+				</ToolbarSpacer>
+			</Toolbar>
+			<Toolbar class="InboundToolbarbrdr sapUiSmallMarginTop">
+				<ToolbarSpacer>
+				</ToolbarSpacer>
+				<Button id="id_QA" text="{i18n>Text20}" press="onPressQueuing" class="Inbound_BtnClr2 sapUiTinyMarginBegin sapUiTinyMarginBottom" width="7rem"></Button>	
+				<ToolbarSpacer>
+				</ToolbarSpacer>
+				<!--<Button id="id_RejQA" text="{i18n>Text22}" press="onPressQueuing" class="Inbound_BtnClr4 sapUiTinyMarginEnd sapUiTinyMarginBottom" width="7rem"></Button>-->
+			</Toolbar>	
+			
+			<!--</HBox>-->
+			<!---->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

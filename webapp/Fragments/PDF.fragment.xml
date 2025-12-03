@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog  class="Dialog">
+		<content>
+			<PDFViewer  id="id_PDf">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</PDFViewer>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,446 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog class="Dialog sapUiSizeCompact">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>EwayGen}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseEwayGenerate" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<Panel id="id_Panel" headerText="{i18n>InvoiceVerification}" expandable="true" width="auto" class="Cl_Panel">-->
+			<f:Form id="id_Form" editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="1" columnsXL="3" columnsL="3" columnsM="3" columnsS="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="{i18n>WbIdlabel}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Wbid}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Label28}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Ebeln}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Eway}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>EwayDate}" class="cl_Bold">
+								<f:fields>
+									<DatePicker id="DP1" placeholder="Enter Date" change="handleChange" value="{JMEwayListBinding>/EwayDate}" class=""/>
+									<!--<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Caliber}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer >
+						<f:formElements>
+							<f:FormElement label="{i18n>WBItem}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Item}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Ebelp}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Ebelp}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>EwayQty}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>MatType}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Label25}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer >
+						<f:formElements>
+							<f:FormElement label="{i18n>BatchNo}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>VehicleNo}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>EwayUom}" visible="{DisplayIN>/ROUTE_COST}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>MatCount}" visible="{DisplayIN>/ROUTE_COST}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<!--</Panel>-->
+			<!--<f:SimpleForm id="id_CreateNewEway" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="12" labelSpanM="12"-->
+			<!--	labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"-->
+			<!--	singleContainerFullSize="false" class="cl_FormGrid2">-->
+			<!--	<f:content>-->
+			<!--		<core:Title/>-->
+			<!--		<Label text="{i18n>WbIdlabel}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>Label28}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>Eway}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>EwayDate}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>Caliber}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<core:Title/>-->
+			<!--		<Label text="{i18n>WBItem}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>Ebelp}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>EwayQty}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>MatType}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>Label25}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<core:Title/>-->
+			<!--		<Label text="{i18n>BatchNo}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>VehicleNo}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>EwayUom}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--		<Label text="{i18n>MatCount}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Label>-->
+			<!--		<Input class="Input_PM" value="{JMEwayList>/Token}" liveChange="fnOutDrivingLicChange">-->
+			<!--			<layoutData>-->
+			<!--				<l:GridData span="L12 M12 S12"/>-->
+			<!--			</layoutData>-->
+			<!--		</Input>-->
+			<!--	</f:content>-->
+			<!--</f:SimpleForm>-->
+			<!--<Panel id="id_Panel" headerText="{i18n>InvoiceVerification}" expandable="true" width="auto" class="Cl_Panel">-->
+			<!--	<f:Form id="id_Form" editable="false">-->
+			<!--		<f:layout>-->
+			<!--			<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"-->
+			<!--				emptySpanL="0" emptySpanM="0" emptySpanS="1" columnsXL="3" columnsL="4" columnsM="2" singleContainerFullSize="false"/>-->
+			<!--		</f:layout>-->
+			<!--		<f:formContainers>-->
+			<!--			<f:FormContainer>-->
+			<!--				<f:formElements>-->
+			<!--					<f:FormElement label="{DisplayIN>/LIFNR_NAM}" class="cl_Bold">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/LIFNR}" id="id_Lifnr" class="Input_PM" value="{path: 'HOME>/Lifnr', formatter: '.Formatter.LeadingZero'}"-->
+			<!--								valueHelpOnly="{DisplayIN>/LIFNR_HELP}" showValueHelp="{DisplayIN>/LIFNR_HELP}" editable="{DisplayIN>/LIFNR_DISP}"-->
+			<!--								valueHelpRequest="fnLifnrHelp"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/LIFNR_NAME_NAM}" class="cl_Bold">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/LIFNR_NAME}" class="Input_PM" value="{HOME>/LifnrName}" valueHelpOnly="{DisplayIN>/LIFNR_NAME_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/LIFNR_NAME_HELP}" editable="{DisplayIN>/LIFNR_NAME_DISP}"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--<f:FormElement label="{DisplayIN>/Veh_type}" class="cl_Bold">-->
+			<!--					<f:FormElement label="{DisplayIN>/VEHTYP_NAM}" class="cl_Bold">-->
+			<!--						<f:fields>-->
+			<!--<Input visible="{DisplayIN>/WERKS}" class="Input_PM" value="{HOME>/Werks} - {HOME>/Name1}" valueHelpOnly="{DisplayIN>/WERKS_HELP}"-->
+			<!--	showValueHelp="{DisplayIN>/WERKS_HELP}" editable="{DisplayIN>/WERKS_DISP}"/>-->
+			<!--							<Input visible="{DisplayIN>/VEHTYP}" class="Input_PM" valueHelpOnly="{DisplayIN>/VEHTYP_HELP}" showValueHelp="true" value="{HOME>/Vehtype}"-->
+			<!--								valueHelpRequest="fnVehicleTypeHelp" id="id_Vehtype"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/VESSEL_DATE_NAM}" class="cl_Bold">-->
+			<!--						<f:fields>-->
+			<!--<DatePicker visible="{DisplayIN>/VESSEL_DATE}" value="{HOME>/VesselDate2}" editable="{DisplayIN>/VESSEL_DATE_DISP}"-->
+			<!--	change="fnChangeVesselDate2" id="VesselDate2" valueFormat="YYYY-MM-dd" displayFormat="dd-MM-yyyy"/>-->
+			<!--							<DatePicker visible="{DisplayIN>/VESSEL_DATE}" value="{HOME>/VesselDate}" editable="{DisplayIN>/VESSEL_DATE_DISP}"-->
+			<!--								change="fnChangeVesselDate" id="VesselDate" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"/>-->
+			<!--							<DatePicker visible="{DisplayIN>/VESSEL_DATE}" value="{HOME>/VesselDate2}" editable="{DisplayIN>/VESSEL_DATE_DISP}"-->
+			<!--								change="fnChangeVesselDate" id="VesselDate2" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"/>-->
+			<!--<Input visible="{DisplayIN>/WERKS}" class="Input_PM" value="{HOME>/Werks} - {HOME>/Name1}" valueHelpOnly="{DisplayIN>/WERKS_HELP}"-->
+			<!--	showValueHelp="{DisplayIN>/WERKS_HELP}" enabled="{DisplayIN>/WERKS_DISP}"/>-->
+			<!--<Input value="{HOME>/Werks}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/VESSEL_NAME_NAM}" class="cl_Bold">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/VESSEL_NAME}" class="Input_PM" value="{HOME>/VesselName}" valueHelpOnly="{DisplayIN>/VESSEL_NAME_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/VESSEL_NAME_HELP}" id="id_VesselName" valueHelpRequest="fnVesselNameHelp" enabled="{DisplayIN>/VESSEL_NAME_DISP}"/>-->
+			<!--<Input visible="{DisplayIN>/VESSEL_NAME}" class="Input_PM" value="{HOME>/VesselName}" valueHelpOnly="{DisplayIN>/VESSEL_NAME_HELP}"-->
+			<!--	showValueHelp="{DisplayIN>/VESSEL_NAME_HELP}" valueHelpRequest="fnVehicleTypeHelp" editable="{DisplayIN>/VESSEL_NAME_DISP}"-->
+			<!--	id="id_VesselName"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--				</f:formElements>-->
+			<!--			</f:FormContainer>-->
+			<!--			<f:FormContainer >-->
+			<!--				<f:formElements>-->
+			<!--					<f:FormElement label="{DisplayIN>/POST_DATE_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<DatePicker visible="{DisplayIN>/POST_DATE}" value="{HOME>/PostDate}" editable="{DisplayIN>/POST_DATE_DISP}" change="fnChangeDate"-->
+			<!--								id="PostDate" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"/>-->
+			<!--<Input id="PostDate" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/BILL_REF_IN_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/BILL_REF_IN}" class="Input_PM" value="{HOME>/BillRef}" valueHelpOnly="{DisplayIN>/BILL_REF_IN_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/BILL_REF_IN_HELP}" id="BillRef" maxLength="13" editable="{DisplayIN>/BILL_REF_IN_DISP}"-->
+			<!--								liveChange="fnBillLiveChange"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/BILL_DATE_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<DatePicker visible="{DisplayIN>/BILL_DATE}" value="{HOME>/BillDate}" editable="{DisplayIN>/BILL_DATE_DISP}" change="fnChangeDate"-->
+			<!--								id="BillDate" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"/>-->
+			<!--<DatePicker value="{HOME>/BillDate}" editable="{HOME>/Enable}" change="fnChangeDate" id="BillDate" valueFormat="dd-MM-yyyy"-->
+			<!--	displayFormat="dd-MM-yyyy"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/TRIP_COMPLET_NAM}">-->
+			<!--New-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/TRIP_COMPLET}" class="Input_PM" value="{HOME>/TripComplet}" valueHelpOnly="{DisplayIN>/TRIP_COMPLET_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/TRIP_COMPLET_HELP}" editable="{DisplayIN>/TRIP_COMPLET_DISP}"/>-->
+			<!--<Input value="{HOME>/BillRef}"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/TRIP_INPROGR_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/TRIP_INPROGR}" class="Input_PM" value="{HOME>/TripInprogr}" valueHelpOnly="{DisplayIN>/TRIP_INPROGR_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/TRIP_INPROGR_HELP}" editable="{DisplayIN>/TRIP_INPROGR_DISP}"/>-->
+			<!--<Input value="{HOME>/BillRef}"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--				</f:formElements>-->
+			<!--			</f:FormContainer>-->
+			<!--			<f:FormContainer >-->
+			<!--				<f:formElements>-->
+			<!--					<f:FormElement label="{DisplayIN>/FRT_AMT_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/FRT_AMT}" class="Input_PM" value="{HOME>/FrtAmt}" valueHelpOnly="{DisplayIN>/FRT_AMT_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/FRT_AMT_HELP}" editable="{DisplayIN>/FRT_AMT_DISP}"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--Need to Modify-->
+			<!--					<f:FormElement label="{DisplayIN>/ROUTE_COST_NAM}" visible="{DisplayIN>/ROUTE_COST}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/ROUTE_COST}" class="Input_PM" value="{HOME>/RouteCost}" valueHelpOnly="{DisplayIN>/ROUTE_COST_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/ROUTE_COST_HELP}" editable="{DisplayIN>/ROUTE_COST_DISP}"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--Need to Modify-->
+			<!--					<f:FormElement label="{DisplayIN>/VAR_AMT_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/VAR_AMT}" class="Input_PM" value="{HOME>/VarAmt}" valueHelpOnly="{DisplayIN>/VAR_AMT_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/VAR_AMT_HELP}" editable="{DisplayIN>/VAR_AMT_DISP}"/>-->
+			<!--<Input value="{HOME>/VarAmt}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/DEMURRAGE_AMT_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/DEMURRAGE_AMT}" class="Input_PM" value="{HOME>/DemurrageAmt}" valueHelpOnly="{DisplayIN>/DEMURRAGE_AMT_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/DEMURRAGE_AMT_HELP}" editable="{DisplayIN>/DEMURRAGE_AMT_DISP}"/>-->
+			<!--<Input value="{HOME>/DemurrageAmt}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/TOT_AMT_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/TOT_AMT}" class="Input_PM" value="{HOME>/TotAmt}" valueHelpOnly="{DisplayIN>/TOT_AMT_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/TOT_AMT_HELP}" editable="{DisplayIN>/TOT_AMT_DISP}"/>-->
+			<!--<Input value="{HOME>/OtherAmt}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--				</f:formElements>-->
+			<!--			</f:FormContainer>-->
+			<!--			<f:FormContainer >-->
+			<!--				<f:formElements>-->
+			<!--					<f:FormElement label="{DisplayIN>/VAT_TAX_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/VAT_TAX}" class="Input_PM" value="{HOME>/VatTax}" valueHelpOnly="{DisplayIN>/VAT_TAX_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/VAT_TAX_HELP}" editable="{DisplayIN>/VAT_TAX_DISP}"/>-->
+			<!--<Input value="{HOME>/VatPer}" id="id_VatPer" change="fnChangeData" description="%" editable="{= ${HOME>/VATTaxFlg} !== 'X' ? false : true }"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--<f:FormElement label="{DisplayIN>/TAXCODE_NAM}">-->
+			<!--					<f:FormElement label="{DisplayIN>/TAXCODE_NAM}">-->
+			<!--						<f:fields>-->
+			<!--<Input visible="true" class="Input_PM" value="{HOME>/Taxcode} - {HOME>/TaxDesc}" valueHelpOnly="true" showValueHelp="true" editable="true"-->
+			<!--	valueHelpRequest="fnTaxOpen" />-->
+			<!--							<Input visible="{DisplayIN>/TAXCODE}" class="Input_PM" value="{HOME>/Taxcode} - {HOME>/TaxDesc}" valueHelpOnly="{DisplayIN>/TAXCODE_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/TAXCODE_HELP}" enabled="{DisplayIN>/TAXCODE_DISP}" valueHelpRequest="fnTaxOpen" id="id_taxcode"/>-->
+			<!--<Input value="{HOME>/Taxcode}" width="50%" valueHelpRequest="fnTaxOpen" showValueHelp="true" valueHelpOnly="true"-->
+			<!--	editable="{= ${HOME>/TaxFlg} !== 'X' ? false : true }"/>-->
+			<!--<Text text="{HOME>/TxcdTxt}" class="sapUiTinyMarginTop"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/INV_AMT_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/INV_AMT}" class="Input_PM" value="{HOME>/InvAmt}" valueHelpOnly="{DisplayIN>/INV_AMT_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/INV_AMT_HELP}" editable="{DisplayIN>/INV_AMT_DISP}"/>-->
+			<!--<Input value="{HOME>/InvAmt}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/NET_PAY_NAM}" editable="false">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/NET_PAY}" class="Input_PM" value="{path: 'HOME>/NetPay', formatter: '.Formatter.fnDecimal'}"-->
+			<!--								valueHelpOnly="{DisplayIN>/NET_PAY_HELP}" showValueHelp="{DisplayIN>/NET_PAY_HELP}" editable="{DisplayIN>/NET_PAY_DISP}"/>-->
+			<!--<Input value="{path: 'HOME>/NetPay', formatter: '.Formatter.fnDecimal'}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--					<f:FormElement label="{DisplayIN>/CURR_NAM}">-->
+			<!--						<f:fields>-->
+			<!--							<Input visible="{DisplayIN>/CURR}" class="Input_PM" value="{HOME>/Curr}" valueHelpOnly="{DisplayIN>/CURR_HELP}"-->
+			<!--								showValueHelp="{DisplayIN>/CURR_HELP}" editable="{DisplayIN>/CURR_DISP}"/>-->
+			<!--<Input value="{HOME>/TotAmt}" editable="false"/>-->
+			<!--						</f:fields>-->
+			<!--					</f:FormElement>-->
+			<!--				</f:formElements>-->
+			<!--			</f:FormContainer>-->
+			<!--		</f:formContainers>-->
+			<!--	</f:Form>-->
+			<!--	</Panel>-->
+		</content>
+		<beginButton>
+			<Button text="{i18n>Text16}" press="fnCheckEway" class="Inbound_BtnClr"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Label11}" press="fnSaveEway" class="Inbound_BtnClr sapUiTinyMarginEnd"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

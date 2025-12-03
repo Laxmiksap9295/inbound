@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog stretchOnPhone="true" stretch="true" type="Standard">
+		<customHeader>
+			<Bar class="Inbound_Bar1">
+				<contentMiddle>
+					<Label text="{i18n>Title12}" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<List id="listId" growing="false" items="{POLIST>/}">
+				<CustomListItem class="clCustomListItem sapUiTinyMarginTop sapUiTinyMarginBegin text1Rem" type="Active">
+					<Toolbar>
+						<Vbox>
+							<Text text="{i18n>Pmblnr}" class="cl_DocText"/>
+							<Text text="{POLIST>Pmblnr}" class="cl_DocTextval"/>
+						</Vbox>
+						<ToolbarSpacer/>
+						<VBox>
+							<Text text="{i18n>DocItem}" class="cl_DocText"/>
+							<Text text="{POLIST>Zeile}" class="cl_DocTextval"/>
+						</VBox>
+					</Toolbar>
+					<Toolbar class="sapUiTinyMarginTop">
+						<Vbox>
+							<Text text="{i18n>Item}" class="cl_DocText"/>
+							<Text text="{POLIST>Item}" class="cl_DocTextval"/>
+						</Vbox>
+						<ToolbarSpacer/>
+						<VBox> 
+							<Text text="{i18n>Material}" class="cl_DocText"/>
+							<Text text="{parts: [{path: 'POLIST>Matnr'}], formatter: '.Formatter.LeadingZero'}" class="cl_DocTextval"/>
+						</VBox>
+					</Toolbar>
+					<Toolbar class="sapUiTinyMarginTop">
+						<Vbox>
+							<Text text="{i18n>Remarks}" class="cl_DocText"/>
+							<Text text="{POLIST>Remarks}" class="cl_DocTextval"/>
+						</Vbox>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</CustomListItem>
+			</List>
+			<!--<List class="Inbound_ListItem" items="{POLIST>/}">-->
+			<!--	<items class="Inbound_ListItem">-->
+			<!--		<ObjectListItem-->
+			<!--			title="{path:'POLIST>Matnr', formatter:'ZGT_MM_INBOUND.Util.Formatter.LeadingZero'}"-->
+			<!--			number="{POLIST>Menge}">-->
+			<!--			<firstStatus>-->
+			<!--				<ObjectStatus-->
+			<!--					text="{parts:[{path:'POLIST>Ebelp'},{path:'POLIST>Posnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PODelivery'}" />-->
+			<!--			</firstStatus>-->
+			<!--			<ObjectAttribute text="{parts:[{path:'POLIST>Ebeln'},{path:'POLIST>Vbeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PODelivery'}" />-->
+			<!--		</ObjectListItem>-->
+			<!--<StandardListItem  -->
+			<!--	title="{parts:[{path:'POLIST>Ebeln'},{path:'POLIST>Vbeln'},{path:'POLIST>Matnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.ListDisplay'}"-->
+			<!-- class="Inbound_ListItem">-->
+			<!--</StandardListItem>-->
+			<!--	</items>-->
+			<!--</List>-->
+		</content>
+		<endButton>
+			<Button press="onCloseMatDoc" text="{i18n>Label17}"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

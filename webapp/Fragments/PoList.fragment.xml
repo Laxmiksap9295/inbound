@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+						 xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+						 xmlns:core="sap.ui.core">
+	<Dialog  stretchOnPhone="true" stretch="true" type="Standard" >
+		<customHeader>
+			<Bar class="Inbound_Bar1">
+				<contentMiddle>
+					<Label text="{i18n>Title12}" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox visible="true">
+				<List id="listId" growing="false" items="{POLIST>/}">
+					<CustomListItem class="clCustomListItem sapUiTinyMarginTop sapUiTinyMarginBegin text1Rem" type="Active">
+						<Toolbar>
+							<Text text="{POLIST>Matnr}"/>
+							<ToolbarSpacer/>
+							<Text text="{POLIST>Menge}" visible="{oViewModel>/Notaproperty}"/>
+						</Toolbar>
+						<Toolbar>
+							<Text text="{parts:[{path:'POLIST>Ebelp'},{path:'POLIST>Posnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PODelivery'}" visible="{oViewModel>/Spotproperty}"/>
+							<ToolbarSpacer/>
+							<Text text="{parts:[{path:'POLIST>Ebeln'},{path:'POLIST>Vbeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PODelivery'}" visible="{oViewModel>/Spotproperty}"/>
+						</Toolbar>
+							<!--code added by kirubakaran for brazil plant on 15.07.2020 to set Nota-Fisical Number-->
+						<Toolbar>
+							<Text text="{POLIST>NF_NUMBER}"/>
+							<ToolbarSpacer/>
+							<Text text="{POLIST>NF_QUANTITY}"/>
+						</Toolbar>
+						<Toolbar>
+							<Text text="{oPoitemVendorIEModel>/EvIeFormNo}" visible="{oViewModel>/VendorIEProperty}"/>
+							<Text text="{POLIST>UNSEZ}" visible="{oViewModel>/Spotproperty}"/>
+						</Toolbar>
+							<!--code ended by kirubakaran for brazil plant on 15.07.2020 to set Nota-Fisical Number-->
+							<!--code added by Srinivas for ASN 22.07.2025-->
+							<Toolbar>
+							<Text text="{POLIST>AsnNumber}" visible="{oViewModel>/Spotproperty}"/>
+						</Toolbar>
+						<!--code ended by Srinivas for ASN on 22.07.2025-->
+					</CustomListItem>
+				</List>
+				</VBox>
+			<!--<List class="Inbound_ListItem" items="{POLIST>/}">-->
+			<!--	<items class="Inbound_ListItem">-->
+			<!--		<ObjectListItem-->
+			<!--			title="{path:'POLIST>Matnr', formatter:'ZGT_MM_INBOUND.Util.Formatter.LeadingZero'}"-->
+			<!--			number="{POLIST>Menge}">-->
+			<!--			<firstStatus>-->
+			<!--				<ObjectStatus-->
+			<!--					text="{parts:[{path:'POLIST>Ebelp'},{path:'POLIST>Posnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PODelivery'}" />-->
+			<!--			</firstStatus>-->
+			<!--			<ObjectAttribute text="{parts:[{path:'POLIST>Ebeln'},{path:'POLIST>Vbeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PODelivery'}" />-->
+			<!--		</ObjectListItem>-->
+					<!--<StandardListItem  -->
+					<!--	title="{parts:[{path:'POLIST>Ebeln'},{path:'POLIST>Vbeln'},{path:'POLIST>Matnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.ListDisplay'}"-->
+					<!-- class="Inbound_ListItem">-->
+					<!--</StandardListItem>-->
+			<!--	</items>-->
+			<!--</List>-->
+		</content>
+		<endButton>
+			<Button press="onClosePoList" text="{i18n>Label17}">
+			</Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

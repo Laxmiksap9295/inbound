@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="Dialog sapUiSizeCompact"
+   
+   
+>
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Title10}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<!--<Button icon="sap-icon://decline" press="_DialogClose" class="Inbound_NavBtn" id="id_BatchCancle"></Button>-->
+					<Button icon="sap-icon://decline" press="onClose" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+				adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content>
+					<Label text="{i18n>Label3}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Wbid}" enabled="false"></Input>
+					<Label text="{i18n>Label4}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Werks}" enabled="false"></Input>
+					<Label text="{i18n>Column5}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<!--<Input value="{Head>/Matnr}" valueHelpOnly="true" showValueHelp="false" valueHelpRequest="onValueHelpPress" id="id_InGate" enabled="false"></Input>-->
+					<Input value="{Head>/Matnr}" valueHelpOnly="true" showValueHelp="false" valueHelpRequest="onValueHelpPress" enabled="false"></Input>
+					<Label text="{i18n>Label19}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Matxt}" enabled="false"></Input>
+					<Label text="{i18n>Column7}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Charg}" maxLength="10" liveChange="onBatchLiveChange" id="id_BatchNumberChk"></Input>
+					<!--Added by Avinash-->
+					<Label required="true" text="{i18n>Token}" id="id_TokenLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input maxLength="20"  id="id_TokenField"></Input>
+					<!--End of Added-->
+					<!--Added by Srinivas on 01/07/2025-->
+					<Label required="true" text="{i18n>Token}" id="id_TokenLabelCombo" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<ComboBox id="id_TokenFieldCombo" change="handleChange" items="{path: 'OriginComboModel>/'}" >
+						<core:Item key="{OriginComboModel>Plant}" text="{OriginComboModel>Origin}" />
+					</ComboBox>
+					<!--End of Added-->
+				</f:content>
+			</f:SimpleForm>
+			<Toolbar class="InboundToolbarbrdr">
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button id="id_BtnCharChk" text="{i18n>Text7}" class="Inbound_BtnClr" press="onPressCharacteristics"></Button>
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" id="id_BatchFormChk" labelSpanXL="5" labelSpanL="4" labelSpanM="4"
+				labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content></f:content>
+			</f:SimpleForm>
+			<Panel id="id_PanelCharChk" visible="true">
+				<content></content>
+			</Panel>
+		</content>
+	
+
+
+	<buttons >
+		<Button id="id_BtnExceptionQA" text="{i18n>ExceptionQA}" press="onExceptionQA" class="Inbound_BtnClr4 sapUiTinyMarginEnd"  visible="false"/>
+		<Button id="id_BtnCharSaveChk" text="{i18n>Text23}" press="fnSaveBatchChar"   class="Inbound_BtnClr"  visible="false"/>
+		<Button id="id_BtnRejCharChek" text="{i18n>Text22}" press="fnSaveBatchChar" class="Inbound_BtnClr4 sapUiTinyMarginEnd"  visible="false"/>
+
+		</buttons>
+
+	</Dialog>
+</core:FragmentDefinition>

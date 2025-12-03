@@ -1,0 +1,8 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Label5}"  class=" Dialog" items="{oGateFilterExit>/}" search="onSearchGate"
+		confirm="onConfirmGate" liveChange="onSearchGate" >
+		<StandardListItem  title="{oGateFilterExit>Gate} - {oGateFilterExit>GateName}" description=""/>
+	</SelectDialog>
+</core:FragmentDefinition>

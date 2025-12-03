@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Label6}"  class=" Dialog" items="{oStatusModel>/StatusUpdateNav/results}" search="onValueHelpSearch"
+		confirm="onValueHelpConfirm" liveChange="onValueHelpSearch" >
+		<StandardListItem class="ListItem" title="{oStatusModel>Vehno}" description="{oStatusModel>Wbid}" />
+	</SelectDialog>
+</core:FragmentDefinition>

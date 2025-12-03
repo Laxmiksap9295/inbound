@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>PackMt}"  class=" Dialog" items="{JMPackMat>/}" search="onValueHelpSearchPack"
+		confirm="onValueHelpConfirmPackMat" liveChange="onValueHelpSearchPack" >
+		<StandardListItem class="ListItem" title="{JMPackMat>Bagtyp}" description="{JMPackMat>BagCat}" icon="sap-icon://factory"/>
+	</SelectDialog>
+</core:FragmentDefinition>

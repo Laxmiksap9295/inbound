@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact" xmlns:ndc="sap.ndc" 
+						xmlns:lib="ZGT_MM_INBOUND.lib">
+	<Dialog xmlns:l="sap.ui.layout"  xmlns:f="sap.ui.layout.form" class="SignatureDialog"  id="SignatureDialog">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Title14}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseSignature" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<lib:custom></lib:custom>
+			<lib:custom></lib:custom>
+			<HBox class="sapUiTinyMarginBegin">
+				<Button width="150px" text="{i18n>Text5}" type="Unstyled"  class="cl_buttonok" press="_SignatureSave"></Button>
+				<Button width="150px" text="{i18n>Text6}"  type="Unstyled" class="cl_buttonclear" press="_SignatureCancel"/>
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

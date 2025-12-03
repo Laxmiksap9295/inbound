@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="Dialog sapUiSizeCompact">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Title3}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<!--<Button icon="sap-icon://decline" press="_DialogClose" class="Inbound_NavBtn" id="id_BatchCancle"></Button>-->
+					<Button icon="sap-icon://decline" press="onClosePreEway" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Toolbar class="cl_Tool sapUiTinyMarginTop">
+				<Label text="{i18n>Label3}" design="Bold" class=" Inbound_SimpleForm sapUiTinyMarginBegin"></Label>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Input value="{Head>/Wbid}" enabled="false" width="50%" class=" sapUiTinyMarginEnd"></Input>
+			</Toolbar>
+			<Toolbar class="cl_Tool">
+				<Label text="{i18n>Item}" design="Bold" class=" Inbound_SimpleForm sapUiTinyMarginBegin"></Label>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Input value="{Head>/Item}" enabled="false" width="50%" class="sapUiTinyMarginEnd "></Input>
+			</Toolbar>
+			<Toolbar class="cl_Tool">
+				<Label text="{i18n>Text21}" design="Bold" class=" Inbound_SimpleForm sapUiTinyMarginBegin"></Label>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Input value="{Head>/Matnr}" enabled="false" width="50%" class=" sapUiTinyMarginEnd"></Input>
+			</Toolbar>
+			<Toolbar class="cl_Tool">
+				<Label text="{i18n>Batch}" design="Bold" class=" Inbound_SimpleForm sapUiTinyMarginBegin"></Label>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Input value="{Head>/Batch}" enabled="false" width="50%" class=" sapUiTinyMarginEnd"></Input>
+			</Toolbar>
+			<Toolbar class="cl_Tool">
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="{i18n>Text23}" press="fnSaveApproveQA" id="id_BtnCharSaveChk" class="Inbound_BtnClr"/>
+				<!--<ToolbarSpacer></ToolbarSpacer>-->
+				<Button id="id_BtnRejCharChek" text="{i18n>Text22}" press="fnSaveRejectQA" class="Inbound_BtnClr4 sapUiTinyMarginEnd" width="7rem"></Button>
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>
+		</content>
+		<!--<beginButton>-->
+		<!--	<Button text="{i18n>Text23}" press="fnSaveBatchChar" class="Inbound_BtnClr"/>-->
+		<!--<Button text="{i18n>Label14}" press="fnSaveBatchChar" visible="false" id="id_BtnCharSave1" class="Inbound_BtnClr"/>-->
+		<!--</beginButton>-->
+		<!--<endButton>-->
+		<!--	<Button text="{i18n>Text22}" press="fnSaveBatchChar" class="Inbound_BtnClr4 sapUiTinyMarginEnd" width="7rem"></Button>-->
+		<!--</endButton>-->
+	</Dialog>
+</core:FragmentDefinition>

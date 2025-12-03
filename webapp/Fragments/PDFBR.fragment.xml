@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="PDFViewID" verticalScrolling="false" contentWidth="70%" contentHeight="75%" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentLeft></contentLeft>
+				<contentMiddle>
+					<Label id="PDFLabelID" class="customDialogClass" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight></contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<FlexBox alignItems="Center" justifyContent="Center">
+				<items>
+					
+				</items>
+			</FlexBox>
+			<VBox class="sapUiSmallMargin">
+				<f:Form id="FormChange480_Trial" visible="false" editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+							emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement label="{i18n>OutputType}">
+									<f:fields>
+									<Select id="output_type" items="{TypeModel>/results}">
+										<core:Item key="{TypeModel>Kschl}" text="{TypeModel>Kschl}"/>
+									</Select>
+									<Button text="{i18n>ViewPDF}" press="fnDispalyPDF"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+			<core:HTML id="idframe"/>
+			<html:div id="content"></html:div>
+		</content>
+		<endButton>
+			<Button text="{i18n>Label17}" press="fnPDFViewClose"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

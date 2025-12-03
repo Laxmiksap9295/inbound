@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="Dialog sapUiSizeCompact">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Title10}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<!--<Button icon="sap-icon://decline" press="_DialogClose" class="Inbound_NavBtn" id="id_BatchCancle"></Button>-->
+					<Button icon="sap-icon://decline" press="onClose" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+				adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content>
+					<Label text="{i18n>Label3}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Wbid}" enabled="false"></Input>
+					<Label text="{i18n>Label4}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Werks}" enabled="false"></Input>
+					<Label text="{i18n>Column5}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<!--<Input value="{Head>/Matnr}" valueHelpOnly="true" showValueHelp="false" valueHelpRequest="onValueHelpPress" id="id_InGate" enabled="false"></Input>-->
+					<Input value="{Head>/Matnr}" valueHelpOnly="true" showValueHelp="false" valueHelpRequest="onValueHelpPress" enabled="false"></Input>
+					<Label text="{i18n>Label19}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Matxt}" enabled="false"></Input>
+					<Label text="{i18n>Column7}" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="{Head>/Charg}" maxLength="10" liveChange="onBatchLiveChange" id="id_BatchNumber"></Input>
+				</f:content>
+			</f:SimpleForm>
+			<Toolbar class="InboundToolbarbrdr">
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button id="id_BtnChar" text="{i18n>Text7}" class="Inbound_BtnClr" press="onPressCharacteristics"></Button>
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" id="id_BatchForm" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+				adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content></f:content>
+			</f:SimpleForm>
+			<Panel id="id_PanelChar" visible="true">
+				<content></content>
+			</Panel>
+		</content>
+		<beginButton>
+			<Button text="{i18n>Text23}" press="fnSaveBatchChar" visible="false" id="id_BtnCharSave" class="Inbound_BtnClr"/>
+			<!--<Button text="{i18n>Label14}" press="fnSaveBatchChar" visible="false" id="id_BtnCharSave1" class="Inbound_BtnClr"/>-->
+		</beginButton>
+		<endButton>
+			<Button id="id_BtnRejChar" text="{i18n>Text22}" press="fnSaveBatchChar" class="Inbound_BtnClr4 sapUiTinyMarginEnd" width="7rem"
+				visible="false"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,91 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<Dialog class="poListTable">
+		<customHeader>
+			<Toolbar class="customHeader">
+				<content>
+					<Label text="{i18n>PackingMatDet}"></Label>
+					<ToolbarSpacer/>
+					<Button class="dialogCloseBtn" icon="sap-icon://save" text="{i18n>Label14}" press="onSavePackMAtDetails"></Button>
+					<Button class="dialogCloseBtn" icon="sap-icon://sys-cancel" text="{i18n>Exit}" press="closePackMatDetailshDialog"></Button>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<content class="sapUiContentPadding">
+			<!--<VBox width="100%">-->
+			<Table items="{JMPackItem>/}" noDataText="{i18n>ErrorMSg16}" class="newTableClass_CSQ sapUiTinyMarginBeginEnd" width="98%">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%" class="popupcombobrdr">
+						<header>
+							<Label text="{i18n>Item}" class="tableheaderClass_CSQ"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" wrapping="true" width="13%">
+						<header>
+							<Label text="{i18n>PackMt}" required="true" class="tableheaderClass_CSQ" wrapping="true"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="13%">
+						<header>
+							<Label text="{i18n>PackTare}" class="tableheaderClass_CSQ"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="16%">
+						<header>
+							<Label text="{i18n>PackQty}" required="true" class="tableheaderClass_CSQ"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="16%">
+						<header>
+							<Label text="{i18n>PacMtQty}" class="tableheaderClass_CSQ" wrapping="true"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<header>
+							<Label text="{i18n>UOM}" class="tableheaderClass_CSQ"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<header>
+							<Label text="{i18n>Action}" class="tableheaderClass_CSQ"/>
+						</header>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem >
+						<cells>
+							<Input class="InputTable sapUiSizeCompact" value="{JMPackItem>Item}" editable="false"></Input>
+						</cells>
+						<cells>
+							<Input class="InputTable sapUiSizeCompact" value="{JMPackItem>Pmat}" editable="true" showValueHelp="true" enabled="true"
+								valueHelpRequest="onF4PackMatType"></Input>
+						</cells>
+						<cells>
+							<Input class="InputTable sapUiSizeCompact" value="{JMPackItem>PmatWt}" editable="true" submit="fnLivechangePackingTare"
+								change="fnLivechangePackingTare" type="Number"></Input>
+							<!--<Input class="InputTable sapUiSizeCompact" value="{JMWsItem>PmatWt}" editable="false" maxLength="3"></Input>-->
+						</cells>
+						<cells>
+							<Input  class="InputTable sapUiSizeCompact" value="{JMPackItem>PmatNo}" editable="true" submit="fnLivechangePackingQty"
+								change="fnLivechangePackingQty" type="Number"></Input>
+								<!--id="id_packtare"-->
+						</cells>
+						<cells>
+							<Input class="InputTable sapUiSizeCompact" value="{JMPackItem>TotPmatWt}" editable="false" type="Number"></Input>
+						</cells>
+						<cells>
+							<Input class="InputTable sapUiSizeCompact" value="{JMPackItem>PackMatUom}" editable="false" maxLength="3"></Input>
+						</cells>
+						<cells>
+							<HBox class="sapUiSmallMarginBegin" alignItems="Center" justifyContent="Center">
+								<Button icon="sap-icon://add" press="fnAddItem" class="cl_actionbtn cl_addbtn sapUiSizeCompact "/>
+								<Button icon="sap-icon://delete" press="onItemDelete" class="cl_actionbtn cl_delbtn sapUiSizeCompact sapUiTinyMarginBegin"/>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!--</VBox>-->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

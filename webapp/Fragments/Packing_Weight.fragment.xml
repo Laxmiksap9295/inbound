@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog contentWidth="100%">
+        <customHeader>
+            <Bar class="Inbound_Bar">
+                <contentMiddle>
+                    <Label text="Packing Material Details" class="Inbound_Title" design="Bold" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press="onClosePackagingDetails"
+                        tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <Table id="idPackTable" items="{PackingWeightModel>/Packaging}">
+            <columns>
+                <Column>
+                    <Text text="{i18n>S.No}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>PackingMaterialType}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>NoofBags}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>BagGrossWeight}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>BagTareWeight}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>Uom}" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{PackingWeightModel>Serial}" />
+                        <Select selectedKey="{PackingWeightModel>Type}"
+                            items="{path: 'MaterialTypeModel>/'}" forceSelection="false"
+                            change=".onPackingMaterialChange">
+                            <items>
+                                <core:Item key="{MaterialTypeModel>PackingMaterialType}"
+                                    text="{MaterialTypeModel>PackingMaterialType}" />
+                            </items>
+                        </Select>
+                        <Input value="{PackingWeightModel>Bags}" type="Number"  liveChange=".onBagsValueChange" />
+                        <Input value="{PackingWeightModel>Gross}" type="Number" editable="false" />
+                        <Input value="{PackingWeightModel>Tare}" type="Number"  editable="false"/>
+                        <Text text="{PackingWeightModel>Uom}" />
+
+
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <beginButton>
+            <Button text="Save" type="Emphasized" class="Inbound_BtnClr"
+                press=".onSavePackagingDetails" />
+        </beginButton>
+        <endButton>
+            <!-- <Button text="Cancel" type="Reject" press=".onClosePackagingDetails"/> -->
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

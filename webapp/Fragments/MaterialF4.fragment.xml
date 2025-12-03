@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Title24}" class=" Dialog" items="{Material>/results}" search="onValueHelpSearch" confirm="onValueHelpConfirm"
+		liveChange="onValueHelpSearch" multiSelect="false">
+		<StandardListItem class="ListItem" title="{Material>Matnr}" description="{Material>Maktx}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

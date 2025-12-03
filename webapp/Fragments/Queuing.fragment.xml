@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog   class="Dialog sapUiSizeCompact" >
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Title23}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseQueuing" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm  editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false"
+						  labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="6"
+						  emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" 
+						  columnsXL="1" columnsL="1" columnsM="1" >
+				<f:content>
+					<Label text="{i18n>Label3}" design="Bold"></Label>
+					<Input value="{Head>/Wbid}" class="Inbound_InputBrd" enabled="false"></Input>
+					<Label text="{i18n>Label6}" design="Bold"></Label>
+					<Input value="{Head>/Vehno}" class="Inbound_InputBrd" enabled="false"></Input>
+					<Label text="{i18n>Label22}" design="Bold"></Label>
+					<Input value="{path:'Head>/Aedat',formatter:'.Formatter.Date'}" class="Inbound_InputBrd" enabled="false"></Input>
+					<Label text="{i18n>Label27}" design="Bold"></Label>
+					<Input value="{path:'Head>/Aetim/ms',formatter:'.Formatter.Time'}" class="Inbound_InputBrd" enabled="false"></Input>
+					<Label text="{i18n>Label24}" design="Bold"></Label>
+					<Input value="{Head>/IvHours}" liveChange="onChangeHour" type="Number" maxLength="2"/>
+					
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<endButton>
+			<Button text="{i18n>Label14}" class="Inbound_BtnClr" press="onSaveQueue"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

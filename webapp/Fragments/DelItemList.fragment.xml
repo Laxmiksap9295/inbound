@@ -1,0 +1,110 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog type="Standard" stretchOnPhone="true" stretch="true" escapeHandler="onEscapeHandler">
+		<customHeader>
+			<Bar class="Inbound_Bar1">
+				<contentMiddle>
+					<Label text="{i18n>PoItemList}" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+				adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<!--code added by kirubakaran for brazil plant on 15.07.2020 to set Nota-Fisical Number-->
+				<f:content>
+					<HBox visible="{oViewModel>/NotaProperty}">
+						<Label text="{i18n>NotaFiscno}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"/>
+						<Input width="70%" id="notanoId" class="sapUiTinyMarginBegin"></Input>
+					</HBox>
+					<HBox visible="{oViewModel>/NotaProperty}">
+						<Label text="{i18n>NotaFiscQ}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"/>
+						<Input width="70%" id="notaQId" change="onNotaFiscalChange" class="sapUiTinyMarginBegin" type="Number"/>
+					</HBox>
+					<HBox visible="{oViewModel>/NotaProperty}">
+						<Label text="{i18n>NoOfBags}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"/>
+						<Input enabled="false" width="70%" id="bagQty" class="sapUiTinyMarginBegin"/>
+					</HBox>
+				</f:content>
+				<!--code ended by kirubakaran for brazil plant on 15.07.2020 to set Nota-Fisical Number-->
+				<!--</VBox>-->
+			</f:SimpleForm>
+			<List class="" items="{oPoitemModel>/results}" id="id_PoItemList" mode="MultiSelect">
+				<items >
+					<CustomListItem >
+						<content>
+							<l:Grid defaultSpan="L12 M12 S12">
+								<l:content>
+									<Panel class="Inbound_Panel InboundPanelContent">
+										<content>
+											<VBox >
+												<items>
+													<Label design="Bold" text="{i18n>Label34}"></Label>
+													<Title text="{oPoitemModel>Vbeln}"></Title>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox >
+												<items>
+													<Label design="Bold" text="{i18n>Label29}"></Label>
+													<Text text="{oPoitemModel>Posnr}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox >
+												<items>
+													<Label design="Bold" text="{i18n>Batch}"></Label>
+													<Text text="{oPoitemModel>Charg}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+										</content>
+										<layoutData>
+											<l:GridData span="L6 M6 S6"/>
+										</layoutData>
+									</Panel>
+									<Panel class="Inbound_Panel">
+										<content>
+											<VBox >
+												<items>
+													<Label design="Bold" text="{i18n>Label30}"></Label>
+													<Text text="{oPoitemModel>Matnr}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox >
+												<items>
+													<Label design="Bold" text="{i18n>Label31}"></Label>
+													<Text text="{oPoitemModel>Arktx}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+										</content>
+										<layoutData>
+											<l:GridData span="L6 M6 S6"/>
+										</layoutData>
+									</Panel>
+								</l:content>
+							</l:Grid>
+						</content>
+					
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+		<endButton>
+			<Button press="onClosePoIteList" text="{i18n>OK}"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

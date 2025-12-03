@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Dialog type="Standard" class="sapUiSizeCompact" width="">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{ITEM>/UnloadConfNav/results/0/Wbid}" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onClickBack2901" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<Toolbar>
+			<ToolbarSpacer/>
+			<Label text="" id="id_time" design="Bold"/>
+		</Toolbar>
+		<Table id="id_ItemTable1" items="{ITEM>/UnloadConfNav/results}">
+			<columns>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="13rem" visible="{oViewModel>/CMSProperty}">
+					<Label text="{i18n>Label12}" design="Bold" class="Unload_InputLbl"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" width="13rem" hAlign="Center">
+					<Label text="{i18n>Label19}" design="Bold" class="Unload_InputLbl"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+					<Label text="{i18n>Unload}" design="Bold" class="Unload_InputLbl"/>
+				</Column>
+			
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Ebeln'},{path:'ITEM>Matnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.ListDisplay'}"></Text>
+						<Text text="{ITEM>Matxt}"></Text>
+						<CheckBox selected="{ITEM>Check}"/>
+					
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--<endButton>-->
+		<Toolbar>
+			<ToolbarSpacer/>
+			<Button text="{i18n>StartUnload}" press="onPressStartUnload2901" class="Inbound_BtnClr sapUiSmallMarginEnd"></Button>
+		</Toolbar>
+		<!--</endButton>-->
+	</Dialog>
+</core:FragmentDefinition>

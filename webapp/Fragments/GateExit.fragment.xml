@@ -1,0 +1,174 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload">
+	<Dialog stretchOnPhone="true" type="Standard" height="100%"
+		class="sapUiResponsiveContentPadding">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{ITEM>/WbHeaderNav/results/0/Wbid}" class="Inbound_Title"
+						design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onClickBack" tooltip="{i18n>Tooltip2}"
+						class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<ScrollContainer class="sapUiTinyMargin" horizontal="true" visible="true" vertical="true"
+			width="100%" height="100%">
+			<VBox>
+				<f:SimpleForm id="gate_form_exit" editable="true" layout="ResponsiveGridLayout"
+					labelSpanXL="5" labelSpanL="5" labelSpanM="5" labelSpanS="5"
+					adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+					emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						<Label text="{i18n>Column1}" design="Bold"></Label>
+						<Input value="{ITEM>/WbHeaderNav/results/0/Wbid}" class="Inbound_InputBrd"
+							enabled="false"></Input>
+						<Label text="{i18n>Label20}" design="Bold" required="true"></Label>
+						<Input placeholder="{i18n>Label5}" liveChange="onValueHelpPress"
+							class="Inbound_InputBrd" valueHelpOnly="true" showValueHelp="true"
+							valueHelpRequest="onValueHelpPress" id="id_InGate"
+							description="{ITEM>/WbHeaderNav/results/0/GateName}"
+							value="{parts:[{path:'ITEM>/WbHeaderNav/results/0/Gate'},{path:'ITEM>/WbHeaderNav/results/0/Wsgate'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}" />
+						<Label text="{i18n>Label6}" design="Bold"></Label>
+						<Input value="{ITEM>/WbHeaderNav/results/0/Vehno}" class="Inbound_InputBrd"
+							enabled="false"></Input>
+						<Label text="{i18n>Label7}" design="Bold"></Label>
+						<Input value="{ITEM>/WbHeaderNav/results/0/Vehtyp}" class="Inbound_InputBrd"
+							enabled="false"></Input>
+						<Label text="{i18n>Label8}" design="Bold"></Label>
+						<Input value="{ITEM>/WbHeaderNav/results/0/Dname}" class="Inbound_InputBrd"
+							enabled="false"></Input>
+						<Label text="{i18n>Label9}" design="Bold"></Label>
+						<!--code
+						added by kirubakaran on 17.09.2020 for brazil plant-->
+						<Input value="{ITEM>/WbHeaderNav/results/0/DriverMob}"
+							class="Inbound_InputBrd" enabled="false"></Input>
+						<Label text="{i18n>cms_contract}" design="Bold"
+							visible="{oViewModel>/cmsContract}"></Label>
+						<Input value="{ITEM>/WbHeaderNav/results/0/Cmscontract}"
+							class="Inbound_InputBrd" enabled="false"
+							visible="{oViewModel>/cmsContract}"></Input>
+
+						<Label text="{i18n>RefNo}" design="Bold" required="true"></Label>
+						<FlexBox width="100%" visible="{oViewModel>/refNumber}">
+							<Input maxLength="42" class="Inbound_InputBrd"
+								value="{ITEM>/WbHeaderNav/results/0/Config17}"
+								enabled="false" valueState="None" valueStateText="None">
+								<layoutData>
+									<FlexItemData growFactor="40" />
+								</layoutData>
+							</Input>
+							<Button icon="sap-icon://bar-code" tooltip="{i18n>RefNo}"
+								class="sapUiTinyMarginBegin" type="Emphasized" press="onScanQRValue" />
+							<Button icon="sap-icon://refresh" tooltip="{i18n>reset}"
+								class="sapUiTinyMarginBegin" type="Reject" press="onresetRefNo" />
+						</FlexBox>
+
+
+						<!--code
+						ended by kirubakaran on 17.09.2020 for brazil plant-->
+						<!--<Label
+						text="{i18n>Label10}" design="Bold"></Label>-->
+						<!--<Input
+						value="{ITEM>/WbHeaderNav/results/0/Remarks}"
+						class="Inbound_InputBrd"></Input>-->
+					</f:content>
+				</f:SimpleForm>
+				<!-- added by srinivas on 12/08/2025 GRN validation -->
+				<MessageStrip
+					id="grn_Msg_Strip"
+					text="{ITEM>/WbHeaderNav/results/0/Config15}"
+					type="{ITEM>/WbHeaderNav/results/0/Config15UIType}"
+					showIcon="true"
+					showCloseButton="false"
+					visible="{ITEM>/WbHeaderNav/results/0/Config15UIMsgStrip}"
+					class="sapUiMediumMarginBottom">
+				</MessageStrip>
+				<!-- <Button icon="sap-icon://add-photo" text = "Capture Images" type="Attention"
+						press="onCaptureCamera"></Button> -->
+				<!-- <Label text="Select Attachment Type" design="Bold"
+				class="sapUiSmallMarginTop"/> -->
+				<!-- <RadioButtonGroup id="idAttachmentType" columns="5" selectedIndex="0">
+					<buttons>
+						<RadioButton text="Driver" key="DRIVER"/>
+						<RadioButton text="Vehicle Name Plate" key="VEH_PLATE"/>
+						<RadioButton text="Licence" key="LICENCE"/>
+						<RadioButton text="Truck Image" key="TRUCK_IMG"/>
+						<RadioButton text="Others" key="OTHERS"/>
+					</buttons>
+				</RadioButtonGroup> -->
+
+				<!-- <UploadCollection
+					id="UploadCollection"
+					multiple="true"
+					change="onChange"
+					fileDeleted="onFileDeleted"
+					selectionChange="onSelectionChange"
+					sameFilenameAllowed="false"
+					typeMissmatch="onTypeMissmatch"
+					uploadComplete="onCompleteUpload"
+					beforeUploadStarts="onBeforeUploadStarts"
+					uploadTerminated="onUploadTerminated"
+					items="{MASS>/}">
+
+
+					<toolbar>
+						<OverflowToolbar>
+							<ToolbarSpacer />
+							<RadioButtonGroup id="id_RadioBtn" columns="5" selectedIndex="0">
+								<RadioButton id="DR" text="{i18n>Text8}" />
+								<RadioButton id="NP" text="{i18n>Text9}" />
+								<RadioButton id="LC" text="{i18n>Text10}" />
+								<RadioButton id="TM" text="{i18n>Text122}" />
+								<RadioButton id="OT" text="{i18n>Text11}" />
+							</RadioButtonGroup>
+							<UploadCollectionToolbarPlaceholder />
+						</OverflowToolbar>
+					</toolbar>
+
+					<items>
+						<UploadCollectionItem
+							documentId="{MASS>Documentid}"
+							fileName="{MASS>Fname}"
+							mimeType="{MASS>Ftype}"
+							url="{MASS>documentUrl}"
+							press="onFilePreview"
+							enableEdit="false"
+							enableDelete="true"
+							visibleDelete="true"
+							visibleEdit="false"
+							class="sapUiSizeCompact">
+						</UploadCollectionItem>
+					</items>
+				</UploadCollection>
+				<VBox id="previewContainer" visible="false" class="sapUiSmallMargin">
+					<HBox alignItems="Center" justifyContent="SpaceBetween"
+						class="sapUiSmallMarginBottom">
+						<Title id="previewTitle" level="H3" text="Preview" />
+						<Button
+							icon="sap-icon://decline"
+							type="Transparent"
+							press=".onClosePreview"
+							tooltip="Close Preview"
+						/>
+					</HBox>
+					<Image
+						id="imagePreview"
+						decorative="false"
+						width="30rem"
+						height="15rem"
+						style="object-fit: contain; border: 1px solid #ccc; background-color: #f8f8f8;"
+					/>
+				</VBox> -->
+
+				<!-- Ended by srinivas on 12/08/2025 GRN validation -->
+			</VBox>
+		</ScrollContainer>
+		<endButton>
+			<Button text="{i18n>Text15}" press="onGateItemSubmit" class="Inbound_BtnClr"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>Label1}" contentHeight="20rem" class="Dialog">
+		<content>
+			<UploadCollection id="vehicleUploadCollection" multiple="true" change="onChangevehicle" fileDeleted="onFileDeletedvehicle"
+				selectionChange="onSelectionChange" sameFilenameAllowed="false" typeMissmatch="onTypeMissmatch"
+				uploadComplete="onCompleteUploadVehicleNumber" beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated"
+				items="{vehicleImage>/}">
+				<items>
+					<UploadCollectionItem documentId="{vehicleImage>Documentid}" fileName="{vehicleImage>Fname}" mimeType="{vehicleImage>Ftype}"
+						enableEdit="false" enableDelete="true" visibleDelete="true" visibleEdit="false" class="sapUiSizeCompact"></UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<beginButton>
+			<Button text="{i18n>Label17}" press="fnclosevehicle"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Text5}" press="fnokvehicle"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

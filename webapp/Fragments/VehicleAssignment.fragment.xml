@@ -1,0 +1,118 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+						 xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+						 xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc">
+	<Dialog  stretchOnPhone="true" stretch="true" type="Standard" >
+		<customHeader>
+				<Bar class="Inbound_Bar1">
+					<contentMiddle>
+						<Label text="{ITEM>/WbHeaderNav/results/0/Wbid}" class="Inbound_Title" design="Bold"/>
+					</contentMiddle>
+					<contentRight>
+						<Button icon="sap-icon://decline" press="onClickBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+					</contentRight>
+				</Bar>
+		</customHeader>
+		<content>
+			<Toolbar class="InboundToolbarbrdr">
+				<HBox>
+					<Switch state="true" id="id_scanid" class="Inbound_switchToggle" customTextOn="{i18n>Label15}" customTextOff="{i18n>Label16}" change="onSwitchChange">
+					</Switch>
+				</HBox>
+				<ToolbarSpacer></ToolbarSpacer>
+					<HBox id="id_VendorBox" visible="false"> 
+						<!--<Label text="{i18n>Label25}" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+						<Input placeholder="{i18n>Label25}" liveChange="onValueHelpPress" class="Inbound_InputBrd" valueHelpOnly="true" showValueHelp="true"
+						valueHelpRequest="onValueHelpPress" id="id_Vendor" value="" width="12rem"></Input>
+					</HBox>
+				<!--<ndc:BarcodeScannerButton id="BarCodeScanner" scanFail="fnBarcodeFailed" scanSuccess="onScanSuccess" tooltip="{i18n>Scanner}" width="4rem" class="zsapMBtnIcon"/>-->
+			</Toolbar>
+			<Toolbar>
+				<Button text="{i18n>Text3}" class="Po_Button" id="id_POBtn" press="onOpenPOList"></Button>
+				<ToolbarSpacer/>
+				<HBox visible="{VISI>/QRCode}">
+					<Label text="{i18n>Label2}" design="Bold" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
+						<ndc:BarcodeScannerButton id="BarCodeScanner" scanFail="fnBarcodeFailed" scanSuccess="onScanBarcode" tooltip="{i18n>Scanner}"  />
+				</HBox>
+				<HBox  visible="{VISI>/Manual}">
+					<Input class="Inbound_InputBrd"  placeholder="{i18n>Label12}" id="id_InManual" maxLength="10" valueHelpRequest="onValueHelpPress"/>
+				</HBox>
+			</Toolbar>
+			<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4"
+				labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm" visible="{VISI>/QRCode}">
+				<f:content>
+					<Label text="{i18n>Title1}" design="Bold" required="true" class="sapUiSmallMarginTop"></Label>
+					<ComboBox items="{F4Model>/results/0/F4ProcessNav/results}" class="Inbound_InputBrd" 
+						selectedKey="{ITEM>/WbHeaderNav/results/0/Wtype}"	selectionChange="onChangeProcess" id="id_ComboProcess"	>
+						<core:Item key="{F4Model>SeqNo}" text="{F4Model>Name1}" />
+					</ComboBox>
+					<Label text="{i18n>Label4}" design="Bold" required="true" class="sapUiSmallMarginTop"></Label>
+					<Input placeholder="{i18n>Label4}" liveChange="onLiveChange" maxLength="4" class="Inbound_InputBrd"
+						showValueHelp="true" valueHelpRequest="onValueHelpPress" id="id_InPlant" 
+						value="{ITEM>/WbHeaderNav/results/0/Werks}"
+						showSuggestion="true"
+						showTableSuggestionValueHelp="false"
+						suggestionRows="{F4Model>/results/0/F4PlantNav/results}"
+						enabled="{path:'ITEM>/WbHeaderNav/results/0/Werks',formatter:'ZGT_MM_INBOUND.Util.Formatter.BatchEnable'}">
+						<suggestionColumns>
+							<Column
+								hAlign="Begin"
+								popinDisplay="Inline"
+								demandPopin="true">
+								<Label text="{i18n>Label4}"/>
+							</Column>
+							<Column
+								hAlign="Begin"
+								popinDisplay="Inline"
+								demandPopin="true"
+								minScreenWidth="Phone">
+								<Label text="{i18n>Label19}"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{F4Model>Werks}"/>
+									<Label text="{F4Model>Name1}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</Input>
+					<Label text="{i18n>Label5}" design="Bold" required="true" class="sapUiSmallMarginTop"></Label>
+					<Input placeholder="{i18n>Label5}" liveChange="onValueHelpPress" class="Inbound_InputBrd" valueHelpOnly="true" showValueHelp="true"
+						valueHelpRequest="onValueHelpPress" id="id_InGate" 
+						value="{parts:[{path:'ITEM>/WbHeaderNav/results/0/Gate'},{path:'ITEM>/WbHeaderNav/results/0/Wsgate'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"
+						enabled="{parts:[{path:'ITEM>/WbHeaderNav/results/0/Gate'},{path:'ITEM>/WbHeaderNav/results/0/Wsgate'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.GateEnable'}"/>
+					<Label text="{i18n>Label6}" design="Bold" class="sapUiSmallMarginTop"></Label>
+					<Input placeholder="{i18n>Label6}" class="Inbound_InputBrd" value="{ITEM>/WbHeaderNav/results/0/Vehno}" 
+					enabled="{path:'ITEM>/WbHeaderNav/results/0/Vehno',formatter:'ZGT_MM_INBOUND.Util.Formatter.BatchEnable'}" required="true" id="id_VehiNo" liveChange="onValueHelpPress"/>
+					<Label text="{i18n>Label7}" design="Bold" required="true" class="sapUiSmallMarginTop"></Label>
+					<ComboBox items="{F4Model>/results/0/F4VehTypeNav/results}" class="Inbound_InputBrd" id="id_VehicleTy" 
+					enabled="{path:'ITEM>/WbHeaderNav/results/0/Vehtyp',formatter:'ZGT_MM_INBOUND.Util.Formatter.BatchEnable'}"	selectedKey="{ITEM>/WbHeaderNav/results/0/Vehtyp}">
+						<core:Item key="{F4Model>Vehtype}" text="{F4Model>Vehtype}"/>
+					</ComboBox>
+					<Label text="{i18n>Label8}" design="Bold" class="sapUiSmallMarginTop" required="true"></Label>
+					<Input placeholder="{i18n>Label8}" class="Inbound_InputBrd" value="{ITEM>/WbHeaderNav/results/0/Dname}"
+						enabled="{path:'ITEM>/WbHeaderNav/results/0/Dname',formatter:'ZGT_MM_INBOUND.Util.Formatter.BatchEnable'}"/>
+					<Label text="{i18n>Label13}" design="Bold" class="sapUiSmallMarginTop"></Label>
+					<Input placeholder="{i18n>Label13}" liveChange="onValueHelpPress" class="Inbound_InputBrd" valueHelpOnly="true" showValueHelp="true"
+						valueHelpRequest="onValueHelpPress" id="id_InTransport" value="{ITEM>/WbHeaderNav/results/0/Lifnr}"
+						enabled="{path:'ITEM>/WbHeaderNav/results/0/Lifnr',formatter:'ZGT_MM_INBOUND.Util.Formatter.BatchEnable'}"/>
+					<Label text="{i18n>Label9}" design="Bold" class="sapUiSmallMarginTop" required="true"></Label>
+					<Input placeholder="{i18n>Label9}" class="Inbound_InputBrd" value="{ITEM>/WbHeaderNav/results/0/DriverMob}"
+					enabled="{path:'ITEM>/WbHeaderNav/results/0/DriverMob',formatter:'ZGT_MM_INBOUND.Util.Formatter.BatchEnable'}"/>
+					<!--<Label text="{i18n>Label10}" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+					<!--<Input placeholder="{i18n>Label10}" class="Inbound_InputBrd" value="{ITEM>/WbHeaderNav/results/0/Remark}"/>-->
+				</f:content>
+			</f:SimpleForm>
+			<Toolbar visible="{VISI>/Manual}" class="InboundToolbarbrdr">
+				<ToolbarSpacer></ToolbarSpacer>
+					<Button text="{i18n>Text5}" press="onPressManualQROK" class="Inbound_BtnClr"></Button>
+					<Button text="{i18n>Text6}" type="Emphasized" press="onPressClear"></Button>
+			</Toolbar>
+		</content>
+		<endButton>
+			<Button text="{i18n>Label14}" press="onPressSave" class="Inbound_BtnClr" visible="{VISI>/QRCode}"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

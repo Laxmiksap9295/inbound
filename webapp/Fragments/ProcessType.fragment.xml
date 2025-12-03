@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="Dialog sapUiSizeCompact">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>SelProcess}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseProcess" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Toolbar class="InboundToolbarbrdr sapUiSmallMarginTop" height="5rem">
+				<ToolbarSpacer></ToolbarSpacer>
+				<Select class="cl_valSelct" width="50%" change="fnChangeType" id="id_SelProcessType" forceSelection="false">
+					<items>
+						<core:Item text="{i18n>PortOut}" key="01"/>
+						<core:Item text="{i18n>Unloading}" key="02"/>
+						<core:Item text="{i18n>Breakdown}" key="03"/>
+					</items>
+				</Select>
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>
+		</content>
+		<endButton>
+			<Button press="onSelectProcessType" text="{i18n>OK}"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

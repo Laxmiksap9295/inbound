@@ -1,0 +1,149 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="Dialog sapUiSizeCompact">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Update}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseEwayUpdate" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form id="id_Form1" editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="1" columnsXL="3" columnsL="3" columnsM="3" columnsS="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="{i18n>WbIdlabel}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Wbid}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Label28}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Ebeln}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Eway}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>EwayDate}" class="cl_Bold">
+								<f:fields>
+									<DatePicker id="DP1" placeholder="Enter Date" change="handleChange" value="{JMEwayListBinding>/EwayDate}" class=""/>
+									<!--<Input class="Input_PM" value="{JMEwayListBinding>/Token}" liveChange="fnOutDrivingLicChange"></Input>-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Caliber}" class="cl_Bold">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer >
+						<f:formElements>
+							<f:FormElement label="{i18n>WBItem}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Item}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Ebelp}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Ebelp}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>EwayQty}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>MatType}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>Label25}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer >
+						<f:formElements>
+							<f:FormElement label="{i18n>BatchNo}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Matnr}" showValueHelp="true" enabled="true" valueHelpRequest="onValueHelpBatch"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>VehicleNo}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>EwayUom}" visible="{DisplayIN>/ROUTE_COST}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>MatCount}" visible="{DisplayIN>/ROUTE_COST}">
+								<f:fields>
+									<Input class="Input_PM" value="{JMEwayListBinding>/Token}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<!--<f:SimpleForm id="id_CreateNewEway" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"-->
+			<!--	labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"-->
+			<!--	singleContainerFullSize="false" class="cl_FormGrid2">-->
+			<!--	<f:content>-->
+			<!--		<core:Title/>-->
+			<!--		<Label text="{i18n>WbIdlabel}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>Label28}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>VehicleNo}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>BatchNo}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>EwayQty}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>Eway}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>MatCount}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<core:Title/>-->
+			<!--		<Label text="{i18n>WBItem}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>Ebelp}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>Label25}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>Caliber}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>EwayUom}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>EwayDate}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--		<Label text="{i18n>MatType}" design="Bold" class="sapUiTinyMarginTop cl_font" textAlign="Left"></Label>-->
+			<!--		<Input class="Input_PM" value="{DoPortOUTModel>/Token}" liveChange="fnOutDrivingLicChange"/>-->
+			<!--	</f:content>-->
+			<!--</f:SimpleForm>-->
+		</content>
+		<beginButton>
+			<Button text="{i18n>Text16}" press="fnCheckEway" class="Inbound_BtnClr"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Update}" press="fnUpdateEway" class="Inbound_BtnClr sapUiTinyMarginEnd"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog class=" Dialog" items="{Vendor>/results}" search="onValueHelpSearch" confirm="onValueHelpConfirm"
+		liveChange="onValueHelpSearch" cancel="onValueHelpCancel">
+		<StandardListItem class="ListItem" title="{Vendor>Name1}" description="{Vendor>Lifnr}" icon="sap-icon://factory"/>
+	</SelectDialog>
+</core:FragmentDefinition>

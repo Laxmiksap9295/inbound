@@ -1,0 +1,407 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:ndc="sap.ndc"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog contentWidth="100%" stretchOnPhone="true" resizable="true" verticalScrolling="true">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{ITEM>/UnloadConfNav/results/0/Wbid}" class="Inbound_Title" design="Bold" id="WBIdLabel1"/>
+					<Label text="{ITEM>/FertWbData/0/Wbid}" class="Inbound_Title" design="Bold" id="WBIdLabel2" visible = "false"/> <!-- added by srinivas -->
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onClickBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<VBox class="sapUiSmallMargin" visible="{= ${oViewModel>/vFertType} !== true}" id="id_ItemTableVBox">
+			<Table id="id_ItemTable" mode="MultiSelect" items="{ITEM>/UnloadConfNav/results}">
+				<!-- <headerToolbar>
+					<Toolbar visible="{oViewModel>/ContinuousScanner}">
+						<ToolbarSpacer/>
+						<Button id="idContinuousScanner1" icon="sap-icon://bar-code" press="onContinuosScannerBtnPress" />
+					</Toolbar>
+				</headerToolbar> -->
+				<columns>
+					<!--code added by kirubakaran on 16.09.2020 to show CMS Contrct-->
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>cms_contract}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--code ended by kirubakaran on 16.09.2020 to show CMS Contrct-->
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="10rem" visible="{oViewModel>/CMSProperty}">
+						<Label text="{i18n>Label12}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Label19}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Column9}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--code added by kirubakaran on 15.07.2020 to set Nota-Fisical Number-->
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>NotaFiscno}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>NotaFiscQ}" design="Bold" class="Unload_InputLbl" type="Number" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>vendorName}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>VhNo}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>mblno}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/NotaProperty}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Dname}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--code ended by kirubakaran on 15.07.2020 to set Nota-Fisical Number-->
+					<Column minScreenWidth="Phone" visible="{oViewModel>/REMARKS}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Label10}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--Added by Srinivas on 01/07/2025 for DSE-->
+					<Column minScreenWidth="Phone" visible="{oViewModel>/OriginCombo}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Token}" design="Bold" class="Unload_InputLbl" visible="true" />
+					</Column>
+					<!--End of Added-->
+					<!--Added by Avinash-->
+					<Column minScreenWidth="Phone" visible="{oViewModel>/Origin}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Token}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/Box}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>DriverBox}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--End of Added-->
+					<!--Added by Suvethaa for Ghana TP/Biscuits-->
+					<Column minScreenWidth="Phone" visible="{oViewModel>/Quantity}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Quantity}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/Uom}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>UOM}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--End of added-->
+
+					<!-- added by Srinivas on 25/08/2025 for package weight -->
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" visible="{oViewModel>/vPackingWtColumn}"  >
+						<Label text="{i18n>Packing Weight}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<!--code added by kirubakaran on 16.09.2020 to show CMS Contrct-->
+							<Text text="{ITEM>UNSEZ}"></Text>
+							<!--code ended by kirubakaran on 16.09.2020 to show CMS Contrct-->
+							<!--Commented Start by Avinash-->
+							<!--<Text text="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Ebeln'},{path:'ITEM>Matnr'}]}"></Text>-->
+							<!--Commented END-->
+							<!--BOC by Avinash-->
+							<Text text="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'},{path:'ITEM>Matnr'}]}"></Text>
+							<!--EOC by Avinash-->
+							<Text text="{ITEM>Matxt}"></Text>
+							<Input placeholder="{i18n>Title13}" liveChange="onValueHelpPress" maxLength="4" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" value="{ITEM>Lgort}" width="4.9rem" />
+							<!--code added by kirubakaran on 16.09.2020 to show Nota-->
+							<Text text="{ITEM>NF_NUMBER}"></Text>
+							<Text text="{ITEM>NF_QUANTITY}"></Text>
+							<Text text="{ITEM>VEND_NAME}"></Text>
+							<Text text="{ITEM>VEHNO}"></Text>
+							<Text text="{ITEM>DRIVER_MOB}"></Text>
+							<Text text="{ITEM>DNAME}"></Text>
+							<!--<Select visible="{= ${ITEM>IvWerks} !== '2901' ? false : ${ITEM>EvWtype} !== 'TRIP' ? false :true}" items="{REASON>/results}"-->
+							<!-- change="fnMaterialFetch">-->
+							<!--	<core:ListItem key="{REASON>Inremar}" text="{REASON>Inretxt}"/>-->
+							<!--</Select>-->
+							<Select visible="{oViewModel>/REMARKS}" selectedKey="{ITEM>REASON}" items="{REASON>/results}" change="fnSelectedChange">
+								<core:ListItem key="{REASON>Inremar}" text="{REASON>Inretxt}" />
+							</Select>
+							<!--code ended by kirubakaran on 16.09.2020 to show Nota-->
+							<!--<Text text="{ITEM>Lgort}"></Text>-->
+							<!--Added by Srinivas on 01/07/2025 for DSE-->
+							<!-- <Input placeholder="{i18n>Token}" maxLength="20" width="6rem" value="{ITEM>Token}"/> -->
+							<ComboBox id="id_TokenFieldCombo" selectedKey="{ITEM>Token}" change="onHandleChangeCombo" items="{path: 'OriginComboModel>/'}" visible="true">
+								<core:Item key="{OriginComboModel>Origin}" text="{OriginComboModel>Origin}" />
+							</ComboBox>
+							<!--End of Added-->
+							<!--Added by Avinash-->
+							<Input placeholder="{i18n>Token}" maxLength="20" width="6rem" value="{ITEM>Token}" />
+							<Input placeholder="{i18n>DriverBox}" maxLength="25" width="7rem" value="{ITEM>DriverId}" />
+							<!--End of Added-->
+							<!--Added by Suvethaa for Ghana TP/Biscuits-->
+							<Input placeholder="{i18n>Quantity}" maxLength="5" width="6rem" editable="{oViewModel>/QuantityEnabled}" value="{ITEM>Quantity}" />
+							<!--id="id_quanGhana"-->
+							<Input placeholder="{i18n>Uom}" width="7rem" value="{ITEM>Uom}" editable="true" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPressUom" />
+							<!--End of added-->
+							<!-- added by srinivas on 28/08/2025 -->
+							<!-- <Link text="{= ${Weight} ? ${Weight} : 0 }" press=".onOpenPackagingDetails"/>  -->
+							<Link text="{= ${ITEM>Weight} ? ${ITEM>Weight} : 0 }" press=".onOpenPackagingDetails"  visible="{= ${ITEM>PackingFlag} === 'X' }" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!--<endButton>-->
+			<Toolbar>
+				<ToolbarSpacer />
+				<!--Button added by kirubakaran on 16.09.2020 to show Capture Image -->
+				<Button text="{i18n>Label1}" press="onCaptureCamera" class="Inbound_BtnClr" visible="{oViewModel>/NotaProperty}"></Button>
+				<!--Button ended by kirubakaran on 16.09.2020 to show Capture Image-->
+				<Button text="{i18n>Label11}" press="onSignaturePress" class="Inbound_BtnClr"></Button>
+			</Toolbar>
+			<!--</endButton>-->
+		</VBox>
+		<VBox visible="{= ${oViewModel>/vFertType} === true}">
+			<VBox>
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" class="Inbound_SimpleForm">
+					<f:content>
+						<Label required="true" text="{i18n>Deliverynote}" visible="{oViewModel>/vChallan}" design="Bold" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+						<Input value="{ITEM>/EvChallan}" maxLength="16" class="Inbound_InputBrd" width="10rem" visible="{oViewModel>/vChallan}" change="onUpdateItemDeliveryno" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<Table id="id_ItemTable2" mode="MultiSelect" items="{ITEM>/UnloadConfNav/results}" class="sapUiSmallMargin">
+				<columns>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label18}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label30}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--	<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="5rem">
+						<Label text="{i18n>Label29}" design="Bold" class="Unload_InputLbl"/>
+					</Column>-->
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6rem">
+						<Label text="{i18n>Column9}" required="true" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vUnloadqty}">
+						<Label text="{i18n>unloadedqty}" required="true" design="Bold" class="Unload_InputLbl" wraping="true" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vRejectedqty}">
+						<Label text="{i18n>rejectedqty}" design="Bold" class="Unload_InputLbl" wraping="true" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vAcceptqty}">
+						<Label text="{i18n>acceptedqty}" required="true" design="Bold" class="Unload_InputLbl" wraping="true" type="Number" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="5rem" visible="{oViewModel>/vUOM}">
+						<Label text="{i18n>UOM}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vRemarks}">
+						<Label text="{i18n>Deliverynote}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label21}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+						<!-- added by Srinivas on 25/08/2025 for package weight -->
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" visible="{oViewModel>/vPackingWtColumn}"  >
+						<Label text="{i18n>PackingWeight}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column width="2.5rem" visible="{oViewModel>/vDel}">
+						<Label />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Input value="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'}]}" editable="false" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onF4GetPOItems" />
+	                        <Text text="{parts:[{path:'ITEM>Matnr'},{path:'ITEM>Maktx'}]}"  /> 						<!-- removed width at cell level by srinivas width="8rem" -->
+							<!--	<Input value="{ITEM>Ebelp}" editable="false" width="5rem"/>-->
+							<Input placeholder="{i18n>Title13}" liveChange="onValueHelpPress" maxLength="4" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" value="{ITEM>Lgort}" width="6rem" />
+							<Input value="{ITEM>Config16}" maxLength="15" width="6rem" type="Number" change="onCalculateAcceptQty" />
+							<Input value="{ITEM>Config14}" maxLength="15" width="6rem" type="Number" change="onCalculateAcceptQty" />
+							<Input value="{ITEM>Config17}" maxLength="15" editable="false" width="6rem" type="Number" />
+							<Input placeholder="{i18n>Uom}" width="5rem" editable="false" value="{ITEM>Config19}" valueHelpOnly="true" showValueHelp="false" valueHelpRequest="onValueHelpPressUom" />
+							<Input value="{ITEM>Config18}" maxLength="16" width="6rem" />
+							<Input value="{ITEM>Config20}" maxLength="50" width="6rem" />
+							<!-- added by srinivas on 28/08/2025 for Package Weight -->
+							<Link text="{= ${ITEM>Weight} ? ${ITEM>Weight} : 0 }" press=".onOpenPackagingDetails"  visible="{= ${ITEM>PackingFlag} === 'X' }" />
+							<Button type="Reject" icon="sap-icon://delete" press="OnDeleteWBID" width="2.5rem" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button type="Accept" icon="sap-icon://add" text="{i18n>Add}" press="onAddPoItemFrag" visible="{oViewModel>/vChallan}" />
+				<Button text="{i18n>Label11}" press="OnsubmitPoItem" class="Inbound_BtnClr"></Button>
+			</Toolbar>
+		</VBox>
+
+
+		<!-- added by srinivas on 30/08/2025 param H replica but to have 2 tables based on po items
+		Fert value x or ""in same data set-->
+		<VBox visible="{= ${oViewModel>/nFertType} === true}">
+			<VBox>
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" class="Inbound_SimpleForm">
+					<f:content>
+						<Label required="true" text="{i18n>Deliverynote}" visible="{oViewModel>/vChallan}" design="Bold" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+						<Input value="{ITEM>/EvChallan}" maxLength="16" class="Inbound_InputBrd" width="10rem" visible="{oViewModel>/vChallan}" change="onUpdateItemDeliveryno" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<Table id="id_ItemTable2A" mode="MultiSelect" items="{ITEM>/NonFertWbData}" class="sapUiSmallMargin">
+				<headerToolbar>
+					<OverflowToolbar>
+						<!-- <Title text="First Table"/> -->
+						<ToolbarSpacer />
+						<Button type="Accept" icon="sap-icon://add" text="{i18n>Add}" press="onAddPoItemFrag" visible="{oViewModel>/vChallan}" />
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label18}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label30}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--	<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="5rem">
+						<Label text="{i18n>Label29}" design="Bold" class="Unload_InputLbl"/>
+					</Column>-->
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6rem">
+						<Label text="{i18n>Column9}" required="true" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vUnloadqty}">
+						<Label text="{i18n>unloadedqty}" required="true" design="Bold" class="Unload_InputLbl" wraping="true" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vRejectedqty}">
+						<Label text="{i18n>rejectedqty}" design="Bold" class="Unload_InputLbl" wraping="true" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vAcceptqty}">
+						<Label text="{i18n>acceptedqty}" required="true" design="Bold" class="Unload_InputLbl" wraping="true" type="Number" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="5rem" visible="{oViewModel>/vUOM}">
+						<Label text="{i18n>UOM}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem" visible="{oViewModel>/vRemarks}">
+						<Label text="{i18n>Deliverynote}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label21}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem"    visible="{oViewModel>/nPackingWtColumn}" >
+						<Label text="{i18n>PackingWeight}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+
+					<Column width="2.5rem" visible="{oViewModel>/vDel}">
+						<Label />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Input value="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'}]}" editable="false" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onF4GetPOItems" />
+							<Text text="{parts:[{path:'ITEM>Matnr'},{path:'ITEM>Maktx'}]}" width="8rem" />
+							<!--	<Input value="{ITEM>Ebelp}" editable="false" width="5rem"/>-->
+							<Input placeholder="{i18n>Title13}" liveChange="onValueHelpPress" maxLength="4" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" value="{ITEM>Lgort}" width="6rem" />
+							<Input value="{ITEM>Config16}" maxLength="15" width="6rem" type="Number" change="onCalculateAcceptQty" />
+							<Input value="{ITEM>Config14}" maxLength="15" width="6rem" type="Number" change="onCalculateAcceptQty" />
+							<Input value="{ITEM>Config17}" maxLength="15" editable="false" width="6rem" type="Number" />
+							<Input placeholder="{i18n>Uom}" width="5rem" editable="false" value="{ITEM>Config19}" valueHelpOnly="true" showValueHelp="false" valueHelpRequest="onValueHelpPressUom" />
+							<Input value="{ITEM>Config18}" maxLength="16" width="6rem" />
+							<Input value="{ITEM>Config20}" maxLength="50" width="6rem" />
+							<Link text="{= ${ITEM>Weight} ? ${ITEM>Weight} : 0 }" press=".onOpenPackagingDetails"  visible ="{= ${ITEM>PackingFlag} === 'X' }"/>
+							<Button type="Reject" icon="sap-icon://delete" press="OnDeleteWBID" width="2.5rem" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table id="id_ItemTable2B" mode="MultiSelect" items="{ITEM>/FertWbData}" class="sapUiSmallMargin">
+				<columns>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label18}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label30}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<!--	<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="5rem">
+						<Label text="{i18n>Label29}" design="Bold" class="Unload_InputLbl"/>
+					</Column>-->
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6rem">
+						<Label text="{i18n>Column9}" required="true" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="8rem">
+						<Label text="{i18n>Label21}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="6rem"  visible="{oViewModel>/fPackingWtColumn}"  >
+						<Label text="{i18n>PackingWeight}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Input value="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'}]}" editable="false" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onF4GetPOItems" />
+							<Text text="{parts:[{path:'ITEM>Matnr'},{path:'ITEM>Maktx'}]}" width="8rem" />
+							<!--	<Input value="{ITEM>Ebelp}" editable="false" width="5rem"/>-->
+							<Input placeholder="{i18n>Title13}" liveChange="onValueHelpPress" maxLength="4" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" value="{ITEM>Lgort}" width="6rem" />
+							<Input value="{ITEM>Config20}" maxLength="50" width="6rem" />
+							<Link text="{= ${ITEM>Weight} ? ${ITEM>Weight} : 0 }" press=".onOpenPackagingDetails"  visible="{= ${ITEM>PackingFlag} === 'X' }" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Toolbar>
+				<ToolbarSpacer />
+				<!-- <Button type="Accept" icon="sap-icon://add" text="{i18n>Add}" press="onAddPoItemFrag" visible="{oViewModel>/vChallan}"/> -->
+				<Button text="{i18n>Label11}" press="OnsubmitPoItem2AB" class="Inbound_BtnClr"></Button>
+			</Toolbar>
+		</VBox>
+		<!-- end  -->
+
+		<!-- CHAD Inbound New requirement added below by Laxmikanth.B, created new table, QmsgType = 'C'-->
+		<VBox visible="{= ${oViewModel>/zFertType} === true}">
+			<VBox>
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" class="Inbound_SimpleForm">
+					<f:content>
+						<Label required="true" text="{i18n>Deliverynote}" visible="{oViewModel>/vChallan}" design="Bold" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+						<Input value="{ITEM>/EvChallan}" maxLength="16" class="Inbound_InputBrd" width="10rem" visible="{oViewModel>/vChallan}" change="onUpdateItemDeliveryno" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<Table id="id_ItemTable3A" mode="MultiSelect" items="{ITEM>/UnloadConfNav/results}">
+				<headerToolbar>
+					<Toolbar visible="{oViewModel>/ContinuousScanner}">
+						<ToolbarSpacer/>
+						<Button id="idContinuousScanner" icon="sap-icon://bar-code" press="onContinuosScannerBtnPress" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>					
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="10rem" visible="{oViewModel>/CMSProperty}">
+						<Label text="{i18n>Label12}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Label19}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Column9}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/Quantity}" demandPopin="true" hAlign="Left">
+						<Label text="{i18n>Quantity}" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/Batch}" demandPopin="true" hAlign="Left">
+						<Label text="Batch" design="Bold" class="Unload_InputLbl" />
+					</Column>
+					<Column minScreenWidth="Phone" visible="{oViewModel>/BatchStatus}" demandPopin="true" hAlign="Center">
+						<Label text="Batch Status" design="Bold" class="Unload_InputLbl" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<Text text="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'},{path:'ITEM>Matnr'}]}"></Text>
+							<Text text="{ITEM>Maktx}"></Text>
+							<Input placeholder="{i18n>Title13}" enabled="false" liveChange="onValueHelpPress" maxLength="4" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" value="{ITEM>Lgort}" width="4.9rem" />
+							
+							<Input placeholder="{i18n>Quantity}" maxLength="5" width="6rem" editable="{oViewModel>/QuantityEnabled}" value="{ITEM>Menge}" />
+							<Label text="{ITEM>Batch}" />
+							<!-- <Label id="idBatchStatusBTN1" text="{ITEM>BatchStatus}"/>	 -->
+							<Button icon="{ITEM>BatchStatus}" />							
+							 </cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="{i18n>Label11}" press="OnsubmitPoItem3AB" class="Inbound_BtnClr"></Button>
+			</Toolbar>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

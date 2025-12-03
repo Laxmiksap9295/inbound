@@ -1,0 +1,72 @@
+<!--<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog  title="{i18n>Label3}" class=" Dialog" items="{oWBModel>/f4weighBridge}" search="fnSearchWb"
+		confirm="onValueHelpConfirm" liveChange="fnSearchWb" cancel="onValueHelpConfirm" >
+		<StandardListItem class="ListItem" title="{oWBModel>Wbid}" 
+		description="{oWBModel>Wtype}" />
+	</SelectDialog>
+</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog contentWidth="70%" class="newTableClass" contentHeight="70%"  title="{i18n>Label3}">
+	
+		<VBox>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+				adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="sapUiSizeCompact">
+				<f:content>
+						<Label/>
+						<Text/>
+					<Label text="{i18n>portdate}" design="Bold"/>
+					<HBox>
+						<DatePicker
+							value="{ path: 'oWBModel>/wbfDate', type: 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'dd-MM-y',strictParsing:true,UTC:true}}"
+							class="disable__input" valueFormat="yyyy-MM-dd" displayFormat="dd-MM-yyyy" change="onValueHelpPress"/>
+						<Label width="0.5rem"/>
+						<DatePicker
+							value="{ path: 'oWBModel>/wbtDate', type: 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'dd-MM-y',strictParsing:true,UTC:true}}"
+							class="disable__input" valueFormat="yyyy-MM-dd" displayFormat="dd-MM-yyyy" maxDate="{oWBModel>/cdate}" change="onValueHelpPress"/>
+					</HBox>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<Input width ="95%" liveChange="fnSearchWb" placeholder="{i18n>Search}" class=" sapUiSizeCompact sapUiSmallMarginBeginEnd sapUiTinyMarginTop"/>
+		<Table inset="false" type="Active" class="cl_tableBatch" items="{path: 'oWBModel>/f4weighBridge', sorter: {path: 'Wbid'}}">
+			<columns>
+				<Column demandPopin="true" hAlign="Center">
+					<header>
+						<Text text="{i18n>Label3}"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<header>
+						<Text text="{i18n>Vbeln}"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<header>
+						<Text text="{i18n>truckno}"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<header>
+						<Text text="{i18n>portdate}"/>
+					</header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem press="onValueHelpConfirm" type="Active">
+					<cells>
+						<Text text="{oWBModel>Wbid}"/>
+						<Text text="{oWBModel>Delivery}"/>
+						<Text text="{oWBModel>Vehno}"/>
+						<!--	<Text text="{oWBModel>PortOutDate}"/>-->
+						<Text text="{ path: 'oWBModel>PortOutDate', type: 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'dd-MM-y' } }"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<beginButton>
+			<Button text="{i18n>Label17}" press="onClosefragment"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

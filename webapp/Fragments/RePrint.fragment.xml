@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="Dialog sapUiSizeCompact">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Print}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onClickReprintDecline" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4"
+				labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content>
+					<Label text="{i18n>Label22}" design="Bold" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+					<DatePicker id="id_InDate" class="sapUiSmallMarginTop"></DatePicker>
+					<Label text="{i18n>Label6}" design="Bold" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+					<Input placeholder="{i18n>Label6}" submit="onClickVehicleF4" class="Inbound_InputBrd sapUiSmallMarginTop" id="id_InVehicleNo" valueHelpOnly="true"
+						showValueHelp="true" valueHelpRequest="onClickVehicleF4" value=""/>
+					<Label text="{i18n>Label3}" design="Bold" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" id="id_InWbid" class="Inbound_InputBrd sapUiSmallMarginTop"></Input>
+					<!--Added by Avinash-->
+					<Label text="{i18n>SelCharg}" design="Bold" id="id_InBatchLabel" class="sapUiSmallMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" id="id_InBatch" class="Inbound_InputBrd sapUiSmallMarginTop" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onPrLotF4"></Input>
+					<!--End of Added-->
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<endButton>
+			<Button text="{i18n>OK}" press="fnClickonReprintOK" id="id_BtnReject" class="Inbound_BtnClr"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

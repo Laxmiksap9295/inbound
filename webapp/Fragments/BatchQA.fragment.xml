@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Batch}" class=" Dialog" items="{JMUpdateWbid>/}" search="onValueHelpSearchBatch" confirm="onValueHelpConfirmBatch"
+		liveChange="onValueHelpSearchBatch" multiSelect="false">
+		<StandardListItem class="ListItem" title="{JMUpdateWbid>Batch}" />
+	</SelectDialog>
+</core:FragmentDefinition>

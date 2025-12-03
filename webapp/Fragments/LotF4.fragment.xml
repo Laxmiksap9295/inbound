@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<TableSelectDialog title="{i18n>SelBatch}" search="onChargF4Search" liveChange="onChargF4Search" confirm="onChargF4Confirm"
+		multiSelect="true" items="{LotF4Data>/}" contentWidth="90%" growing="false" growingThreshold="100" class="Dialog">
+		<ColumnListItem selected="{LotF4Data>Selected}">
+			<cells>
+				<Text text="{LotF4Data>Ebeln} #{LotF4Data>Ebelp}" class="cl_FontText"/>
+				<ObjectIdentifier title="{LotF4Data>Lotno}" class="cl_FontText"/>
+				<Text text="{LotF4Data>Bwtar}" class="cl_FontText"/>
+				<Text text="{parts: [{path: 'LotF4Data>Matnr'}], formatter: '.Formatter.LeadingZero'}" class="cl_FontText"/>
+				<Text text="{LotF4Data>Maktx}" class="cl_FontText"/>
+				<Text text="{LotF4Data>Lgort}" class="cl_FontText"/>
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="12em" hAlign="Center">
+				<header>
+					<Text text="{i18n>PoItem}"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<header>
+					<Text text="{i18n>Batch}"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Desktop" hAlign="Center">
+				<header>
+					<Text text="{i18n>PR_LOT}"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+				<header>
+					<Text text="{i18n>Text21}"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+				<header>
+					<Text text="{i18n>Maktx}"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+				<header>
+					<Text text="{i18n>UnloadLgort}"/>
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

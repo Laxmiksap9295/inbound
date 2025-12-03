@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Title5}"  class=" Dialog" items="{GATE>/results}" search="onValueHelpSearch"
+		confirm="onValueHelpConfirm" liveChange="onValueHelpSearch" cancel="onValueHelpCancel">
+		<ObjectListItem
+			class="ListItem"
+			title="{GATE>Gate}"
+			type="Active"
+		
+				number="{GATE>Wbname}"
+			numberUnit="{GATE>Wbobj}">	<!-- added by dharma number and unit-->
+		</ObjectListItem>
+		<!--<StandardListItem class="ListItem" title="{GATE>Gate}" />-->
+	</SelectDialog>
+</core:FragmentDefinition>

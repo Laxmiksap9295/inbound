@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>WbIdlabel}" class="DialogReason" items="{JMUpdateWbid>/}">
+		<SearchField placeholder="{i18n>Search}" class="sapUiTinyMarginBeginEnd sapUiSizeCompact " id="id_SearchFieldpoReprint" visible="true" change="fnFilterEway"
+			liveChange="fnFilterEwayReprint" width="98%"/>
+		<Table noDataText="{i18n>ErrorMSg16}" id="id_tablefilterReprint" inset="false" type="Active" items="{JMUpdateWbid>/}"
+			itemPress="_handleConfirmWbidReprint" selectionChange="_handleConfirmWbidReprint" class="newTableClass_CSQ sapUiTinyMarginBeginEnd" width="98%">
+			<columns>
+				<Column width="auto" hAlign="Center">
+					<header>
+						<Text text="{i18n>WbId}" class="tableheaderClass_CSQ"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" width="auto" demandPopin="true" hAlign="Center">
+					<header>
+						<Text text="{i18n>Item}" class="tableheaderClass_CSQ"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Desktop" width="auto" hAlign="Center">
+					<header>
+						<Text text="{i18n>Batch}" class="tableheaderClass_CSQ"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="auto">
+					<header>
+						<Text text="{i18n>Ebeln}" class="tableheaderClass_CSQ"/>
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" width="auto" demandPopin="true" hAlign="Center">
+					<header>
+						<Text text="{i18n>Text21}" minScreenWidth="Tablet" demandPopin="true" class="tableheaderClass_CSQ"/>
+					</header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem  itemPress="_handleConfirmWbidReprint" selectionChange="_handleConfirmWbidReprint" type="Active">
+					<cells>
+						<Text text="{JMUpdateWbid>Wbid}"/>
+						<Text text="{JMUpdateWbid>Item}"/>
+						<Text text="{JMUpdateWbid>Batch}"/>
+						<Text text="{JMUpdateWbid>Ebeln}"/>
+						<Text text="{JMUpdateWbid>Matnr}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--<beginButton>-->
+		<!--	<Button text="{i18n>Ok}" press="onScanBarcode"/>-->
+		<!--</beginButton>-->
+		<endButton>
+			<Button text="{i18n>Label17}" press="onCloseWbidf4Reprint"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

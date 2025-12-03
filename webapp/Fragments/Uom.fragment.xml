@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>UOM}" class="DialogReason" items="{UOM>/}" search="onValueHelpUomSearch" 
+		liveChange="onValueHelpUomSearch"	confirm="onValueHelpConfirmUom"	>
+		<StandardListItem title="{UOM>Meinh}" />
+	</SelectDialog>
+</core:FragmentDefinition>

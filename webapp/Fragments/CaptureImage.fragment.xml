@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>Label1}" contentHeight="20rem"    contentWidth="35rem" class="Dialog">
+		<content>
+		<RadioButtonGroup id="id_RadioBtn" columns="5" selectedIndex="0"  style="flex-wrap: wrap;" class="responsiveRadioButtons">
+			<buttons>
+				<RadioButton id="DR" text="{i18n>Text8}"/>
+				<RadioButton id="NP" text="{i18n>Text9}" />
+				<RadioButton id="LC" text="{i18n>Text10}"/>
+				<RadioButton id="TM" text="{i18n>Text122}"/>
+				<RadioButton id="OT" text="{i18n>Text11}"/>
+			</buttons>
+		</RadioButtonGroup>
+	
+		<UploadCollection
+				id="UploadCollection"
+				multiple="true"
+				change="onChange"
+				fileDeleted="onFileDeleted"
+				selectionChange="onSelectionChange"
+				sameFilenameAllowed="false"
+				typeMissmatch="onTypeMissmatch"
+				uploadComplete="onCompleteUpload"
+				beforeUploadStarts="onBeforeUploadStarts"
+				uploadTerminated="onUploadTerminated"
+				items ="{MASS>/}">
+		<items>
+			<UploadCollectionItem
+				documentId="{MASS>Documentid}" 
+				fileName="{MASS>Fname}"
+				mimeType="{MASS>Ftype}" 
+				url="{MASS>documentUrl}" 
+				press="onFilePreview"
+				enableEdit="false"
+				enableDelete="true"
+				visibleDelete="true"
+				visibleEdit="false"
+				class="sapUiSizeCompact">
+			</UploadCollectionItem>
+		</items>
+		</UploadCollection>
+	<!-- added by srinivas -->
+  <VBox id="previewContainer" visible="false" class="sapUiSmallMargin">
+        <HBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
+          <Title id="previewTitle" level="H3" text="Preview" />
+          <Button
+            icon="sap-icon://decline"
+            type="Transparent"
+            press=".onClosePreview"
+            tooltip="Close Preview"
+          />
+        </HBox>
+        <Image
+          id="imagePreview"
+          decorative="false"
+          width="30rem"       
+    height="15rem"   
+   
+    style="object-fit: contain; border: 1px solid #ccc; background-color: #f8f8f8;"
+        />
+      </VBox>
+
+	<!-- ended -->
+
+		</content>
+		<beginButton>
+			<Button text="{i18n>Label17}" press="fnAddBillClose" ></Button>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Text5}" press="fnOKImages" ></Button>
+			
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

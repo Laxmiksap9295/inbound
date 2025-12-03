@@ -1,0 +1,50 @@
+<!--Added by Avinash-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Label6}" class="Dialog" items="{oStatusModel>/StatusUpdateNav/results}" search="onValueHelpSearch"
+		liveChange="onValueHelpSearch" confirm="onValueHelpConfirm">
+		<!--<ObjectListItem title="{oStatusModel>Vehno}" class="cl_ObjList">-->
+		<!--	<attributes>-->
+		<!--		<ObjectAttribute title="{i18n>WbIdlabel}" text="{oStatusModel>Wbid}" class="WordWrapClass"></ObjectAttribute>-->
+		<!--		<ObjectAttribute title="{i18n>vendorNo}" text="{oStatusModel>Lifnr} - {oStatusModel>Name1}" class="WordWrapClass"></ObjectAttribute>-->
+		<!--		<ObjectAttribute title="{i18n>Label7}" text="{oStatusModel>Vehtyp}" class="WordWrapClass"></ObjectAttribute>-->
+		<!--{parts:[{path:'oStatusModel>Lifnr'}],formatter:'Formatter.LeadingZero'}-->
+		<!--	</attributes>-->
+		<!--	<firstStatus>-->
+		<!--		<ObjectStatus text="{oStatusModel>Status}" state="Success" class="objectStatus"/>-->
+		<!--	</firstStatus>-->
+		<!--</ObjectListItem>-->
+		<CustomListItem>
+			<content>
+				<!--<l:Grid defaultSpan="L6 M6 S4">-->
+				<!--<l:content>-->
+				<Toolbar class="cl_ReqToolBar sapUiTinyMarginTop sapUiTinyMarginBeginEnd" height="2rem">
+					<Text text="{oStatusModel>Vehno}" class="cl_VenDesc"/>
+					<ToolbarSpacer/>
+					<Text text="{oStatusModel>Status}" class="cl_CodeData"/>
+				</Toolbar>
+				<Toolbar class="cl_ReqToolBar sapUiTinyMarginBeginEnd" height="2rem">
+					<Text text="{i18n>WbIdlabel}" class="cl_CodeData"/>
+					<Text text="{i18n>Colon}" width="2px" class="cl_CodeData"/>
+					<Text text="{oStatusModel>Wbid}" class="cl_ColorGh"/>
+					<ToolbarSpacer/>
+					<!--<ObjectStatus text="{oStatusModel>Status}" state="Success" class="objectStatus"/>-->
+					<!--<Text text="{oStatusModel>Vehno}" class="cl_VenDesc"/>-->
+				</Toolbar>
+				<Toolbar class="cl_ReqToolBar sapUiTinyMarginBeginEnd" height="2rem">
+					<Text text="{i18n>vendorNo}" class="cl_CodeData"/>
+					<Text text="{i18n>Colon}" width="2px" class="cl_CodeData"/>
+					<Text text="{oStatusModel>Lifnr}" class="cl_ColorGh"/>
+					<ToolbarSpacer/>
+					<Text text="{oStatusModel>Name1}" class="cl_ColorGh"/>
+				</Toolbar>
+				<Toolbar class="cl_ReqToolBar sapUiTinyMarginBeginEnd" height="2rem">
+					<Text text="{i18n>Label7}" class="cl_CodeData"/>
+					<Text text="{i18n>Colon}" width="2px" class="cl_CodeData"/>
+					<Text text="{oStatusModel>Vehtyp}" class="cl_ColorGh"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</content>
+		</CustomListItem>
+	</SelectDialog>
+</core:FragmentDefinition>
+<!--End of Added-->

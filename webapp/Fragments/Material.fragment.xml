@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Title24}"  class=" Dialog" items="{BATCH>/PreQualNav/results}" search="onValueHelpSearch"
+		confirm="onValueHelpConfirm" liveChange="onValueHelpSearch" >
+		<ObjectListItem
+			class="ListItem"
+			title="{BATCH>Matnr}"
+			type="Active"
+			number="{parts:[{path:'BATCH>Ebeln'},{path:'BATCH>Vbeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"
+			numberUnit="{parts:[{path:'BATCH>Ebelp'},{path:'BATCH>Posnr'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}">
+			<ObjectAttribute text="{BATCH>Matxt}" />
+			
+			<!--<ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" />-->
+		</ObjectListItem>
+		<!--<StandardListItem class="ListItem" title="{path:'BATCH>Matnr',formatter:'ZGT_MM_INBOUND.Util.Formatter.LeadingZero'}" description="{BATCH>Matxt}" />-->
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,213 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog type="Standard" stretchOnPhone="true" stretch="true">
+		<customHeader class="Inbound_Bar1">
+			<Bar class="Inbound_Bar1">
+				<contentMiddle>
+					<Title text="{i18n>PoItemList}" class="Inbound_Title"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<VBox>-->
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+				adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<!--code added by kirubakaran for brazil plant on 15.07.2020 to set Nota-Fisical Number-->
+				<f:content>
+					<HBox visible="{oViewModel>/NotaProperty}">
+						<Label text="{i18n>NotaFiscno}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"/>
+						<Input width="70%" id="notanoId" class="sapUiTinyMarginBegin"></Input>
+					</HBox>
+					<HBox visible="{oViewModel>/NotaProperty}">
+						<Label text="{i18n>NotaFiscQ}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"/>
+						<Input width="70%" id="notaQId" change="onNotaFiscalChange" class="sapUiTinyMarginBegin" type="Number"/>
+					</HBox>
+					<HBox visible="{oViewModel>/BagProperty}" id="bagId">
+						<Label text="{i18n>NoOfBags}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"/>
+						<Input enabled="false" width="70%" id="bagQty" class="sapUiTinyMarginBegin"/>
+					</HBox>
+				</f:content>
+				<!--code ended by kirubakaran for brazil plant on 15.07.2020 to set Nota-Fisical Number-->
+				<!--</VBox>-->
+			</f:SimpleForm>
+			<List class="sapUiSizeCozy listcss" items="{oPoitemModel>/results}" id="id_PoItemList" mode="MultiSelect">
+				<items >
+					<CustomListItem>
+						<content>
+							<l:Grid defaultSpan="L12 M12 S12">
+								<l:content>
+									<Panel class="Inbound_Panel InboundPanelContent">
+										<content>
+											<!--code added by kirubakaran for brazil plant on 18.09.2020-->
+											<VBox visible="{oViewModel>/NotaProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>Label30}"></Label>
+													<Text text="{oPoitemModel>Matnr} - {oPoitemModel>Maktx}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox visible="{oViewModel>/VendorIEProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>VendorIEform}"></Label>
+													<Text text="{oPoitemModel>IeformNo}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox visible="{oViewModel>/TransferProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>IssueBatch}"></Label>
+													<Text text="{oPoitemModel>Charg}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--code ended by kirubakaran for brazil plant on 18.09.2020-->
+											<!--Spotproperty and CMSProperty added for brazil plant on 17.09.2020-->
+											<VBox visible="{oViewModel>/Spotproperty}">
+												<items>
+													<Label design="Bold" text="{i18n>Label28}"></Label>
+													<Title text="{oPoitemModel>Ebeln}"></Title>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox visible="{oViewModel>/Spotproperty}">
+												<items>
+													<Label design="Bold" text="{i18n>Label29}"></Label>
+													<Text text="{oPoitemModel>Ebelp}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox visible="{oViewModel>/Spotproperty}">
+												<items>
+													<Label design="Bold" text="{i18n>Label32}"></Label>
+													<Text text="{oPoitemModel>Lgort}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--HB Start-->
+											<VBox visible="{oViewModel>/CMSProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>storageLoclabel}"></Label>
+													<Text text="{oPoitemModel>Slnam}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--HB End-->
+										</content>
+										<layoutData>
+											<l:GridData span="L6 M6 S6"/>
+										</layoutData>
+									</Panel>
+									<Panel class="Inbound_Panel">
+										<content>
+											<VBox visible="{oViewModel>/Spotproperty}">
+												<items>
+													<Label design="Bold" text="{i18n>Label31}"></Label>
+													<Text text="{oPoitemModel>Txz01}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--code added by kirubakaran on 16.09.2020 for brazil plant-->
+											<VBox visible="{oViewModel>/CMSProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>CMS_Contract}"></Label>
+													<Text text="{oPoitemModel>UNSEZ}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--code ended by kirubakaran on 16.09.2020 for brazil plant-->
+											<VBox visible="{oViewModel>/NotaProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>Label33}"></Label>
+													<Text text="{oPoitemModel>Menge}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--HB Start-->
+											<VBox visible="{oViewModel>/CMSProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>NoOfBags}"></Label>
+													<Text text="{parts: [{path: 'oPoitemModel>Menge'}, {path: 'POST>/EvSixtyBag'}], formatter: '.Formatter.onGetBagQty'}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<VBox visible="{oViewModel>/NotaProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>vendorNo}"></Label>
+													<Text text="{oPoitemModel>Vendor} - {oPoitemModel>Vname}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											<!--HB End-->
+											<VBox visible="{oViewModel>/CMSProperty}">
+												<items>
+													<Label design="Bold" text="{i18n>price}"></Label>
+													<Text text="{oPoitemModel>Netpr}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+										</content>
+										<layoutData>
+											<l:GridData span="L6 M6 S6"/>
+										</layoutData>
+									</Panel>
+									<!-- Added by shaik hedayathullah -->
+									<!-- <Panel class="Inbound_Panel">
+										<content>
+											<VBox >
+												<items>
+													<Label design="Bold" text="ASN.No"></Label>
+													<Text text="{oPoitemModel>/AsnNo}"></Text>
+												</items>
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</VBox>
+											</content>
+										<layoutData>
+											<l:GridData span="L6 M6 S6"/>
+										</layoutData>
+									</Panel> -->
+									<!-- ended by shaik hedayathullah -->
+								</l:content>
+							</l:Grid>
+						</content>
+						<!--<FlexBox-->
+						<!--	width="100%"-->
+						<!--	alignItems="Center"	>-->
+						<!--</FlexBox>-->
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+		<endButton>
+			<Button press="onClosePoIteList" text="{i18n>OK}"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:k="sap.ui.layout.form" xmlns:ndc="sap.ndc">
+	<Dialog verticalScrolling="true" class="pageDialogItem" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Remarks}" class="Label_Frag"></Label>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel class="sapUiSizeCompact cl_Dialog" backgroundDesign="Transparent">
+				<f:Form editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+							emptySpanL="0" emptySpanM="0" emptySpanS="1" columnsXL="3" columnsL="4" columnsM="2" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement>
+									<f:label>
+										<Label text="{i18n>EnterRemarks}" class="cl_Label_PS" design="Bold"></Label>
+									</f:label>
+									<f:fields>
+										<HBox>
+											<Input id="id_RemarksEnt" maxLength="50" class="InputPlaceholder_CP sapUiTinyMarginTop" showValueHelp="false"></Input>
+											<Button icon="sap-icon://add" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiTinyMarginTop" type="Accept" press="fnEnterRemarks"/>
+										</HBox>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<List class="sapUiSmallMarginTop" mode="Delete" delete="handleDelete" growing="true" items="{JmRem>/}">
+					<CustomListItem class="listitemCssSub sapUiTinyMarginTop">
+						<Toolbar class="cl_Tb" height="2rem">
+							<Text text="{JmRem>Text}" class="cl_textRem"/>
+						</Toolbar>
+					</CustomListItem>
+				</List>
+			</Panel>
+		</content>
+		<buttons>
+			<Button text="{i18n>Ok}" icon="sap-icon://accept" press="fnAcceptRem" class=" sapUiSizeCompact "></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
