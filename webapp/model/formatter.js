@@ -1,0 +1,2 @@
+jQuery.sap.require("sap.ui.core.format.DateFormat");jQuery.sap.require("sap.ui.core.format.NumberFormat");jQuery.sap.declare("ZGT_MM_INBOUND.model.formatter");ZGT_MM_INBOUND.model.formatter={fnVbelnVisible:function(e){if(e==="N/A"){return true}else if(e===""||e==="000000"||e==="00000"){return false}else{return true}},fnPosnrVisible:function(e,r){if(e==="N/A"&&r==="00000"){return true}else{return false}},referenceNoDisplay:function(e){var r=false;if(e==="IN - RGP/NRGP"||e==="OUT  - RGP/NRGP"){r=true}return r}};
+//# sourceMappingURL=formatter.js.map

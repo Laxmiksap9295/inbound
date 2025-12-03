@@ -1,0 +1,351 @@
+{
+    "_version": "1.5.0",
+    "sap.app": {
+        "id": "ZGT_MM_INBOUND",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "Gate Entry Inbound and Outbound",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponent",
+            "version": "0.0.0",
+            "toolsId": "3494dd4a-fce1-4d9a-bc5c-2114b448ed42"
+        },
+        "dataSources": {
+            "ZGW_GT_MM_WB_MOBILITY_SRV": {
+                "uri": "/sap/opu/odata/sap/ZGW_GT_MM_WB_MOBILITY_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZGW_GT_MM_WB_MOBILITY_SRV/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "ZGT_MM_INBOUND.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {},
+                "sap.ushell": {},
+                "sap.collaboration": {},
+                "sap.ui.comp": {},
+                "sap.uxap": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ZGT_MM_INBOUND.i18n.i18n"
+                }
+            },
+            "F4Model": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "preload": false
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneTime",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "ZGW_GT_MM_WB_MOBILITY_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "images": [
+                {
+                    "uri": "images"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "ScannerAppLibrary/index.min.js"
+                },
+                {
+                    "uri": "ScannerAppLibrary/quagga.min.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "ZGT_MM_INBOUND.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "Inbound",
+                    "target": [
+                        "Inbound"
+                    ]
+                },
+                {
+                    "pattern": "GateEntry/:EvVehGateEntry:",
+                    "name": "GateEntry",
+                    "target": [
+                        "GateEntry"
+                    ]
+                },
+                {
+                    "pattern": "VehicleAssignment",
+                    "name": "VehicleAssignment",
+                    "target": [
+                        "VehicleAssignment"
+                    ]
+                },
+                {
+                    "pattern": "PreQuality",
+                    "name": "PreQuality",
+                    "target": [
+                        "PreQuality"
+                    ]
+                },
+                {
+                    "pattern": "Unloading",
+                    "name": "Unloading",
+                    "target": [
+                        "Unloading"
+                    ]
+                },
+                {
+                    "pattern": "GateExit",
+                    "name": "GateExit",
+                    "target": [
+                        "GateExit"
+                    ]
+                },
+                {
+                    "pattern": "PreQtyItem/{Wbid},{PoNum},{Flag}",
+                    "name": "PreQtyItem",
+                    "target": [
+                        "PreQtyItem"
+                    ]
+                },
+                {
+                    "pattern": "Status",
+                    "name": "Status",
+                    "target": [
+                        "Status"
+                    ]
+                },
+                {
+                    "pattern": "Approve",
+                    "name": "Approve",
+                    "target": [
+                        "Approve"
+                    ]
+                },
+                {
+                    "name": "BatchUpdate",
+                    "pattern": "BatchUpdate",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "BatchUpdate"
+                    ]
+                },
+                {
+                    "name": "EwayBill",
+                    "pattern": "EwayBill",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "EwayBill"
+                    ]
+                },
+                {
+                    "name": "EwayDetail",
+                    "pattern": "EwayDetail/{lvWbid}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "EwayDetail"
+                    ]
+                },
+                {
+                    "name": "WBQTYUpdate",
+                    "pattern": "WBQTYUpdate",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "WBQTYUpdate"
+                    ]
+                },
+                   {
+                    "pattern": "TruckReporting",
+                    "name": "TruckReporting",
+                    "target": [
+                        "TruckReporting"
+                    ]
+                },
+                   {
+                    "pattern": "TruckQueue",
+                    "name": "TruckQueue",
+                    "target": [
+                        "TruckQueue"
+                    ]
+                },
+                {
+                    "pattern": "PreQualityException",
+                    "name": "PreQualityException",
+                    "target": [
+                        "PreQualityException"
+                    ]
+                }
+
+            ],
+            "targets": {
+                "Inbound": {
+                    "viewName": "Inbound",
+                    "viewId": "Inbound",
+                    "viewLevel": 1
+                },
+                "GateEntry": {
+                    "viewName": "Gate_Entry",
+                    "viewId": "Gate_Entry",
+                    "viewLevel": 1
+                },
+                "VehicleAssignment": {
+                    "viewName": "Vehicle_Assignment",
+                    "viewId": "Vehicle_Assignment",
+                    "viewLevel": 1
+                },
+                "PreQuality": {
+                    "viewName": "PreQuality_Check",
+                    "viewId": "PreQuality",
+                    "viewLevel": 1
+                },
+                "Unloading": {
+                    "viewName": "Unloading_Confirm",
+                    "viewId": "Unloading",
+                    "viewLevel": 1
+                },
+                "GateExit": {
+                    "viewName": "Gate_Exit",
+                    "viewId": "GateExit",
+                    "viewLevel": 1
+                },
+                "PreQtyItem": {
+                    "viewName": "PreQuality_CheckItem",
+                    "viewId": "PreQuality_CheckItem",
+                    "viewLevel": 2
+                },
+                "Status": {
+                    "viewName": "Status_Update",
+                    "viewId": "Status_Update",
+                    "viewLevel": 1
+                },
+                "Approve": {
+                    "viewName": "Approve",
+                    "viewId": "Approve",
+                    "viewLevel": 1
+                },
+                "BatchUpdate": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "BatchUpdate",
+                    "viewId": "BatchUpdate",
+                    "viewLevel": 5
+                },
+                "EwayBill": {
+                    "viewName": "EwayBill",
+                    "viewId": "id_ewaybill",
+                    "viewLevel": 6
+                },
+                "EwayDetail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "EwayDetail",
+                    "viewLevel": 7,
+                    "viewId": "id_EwayDetail"
+                },
+                "WBQTYUpdate": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "WBQTY_Update",
+                    "viewId": "WBQTY_Update",
+                    "viewLevel": 8
+                },
+                "TruckReporting": {
+                     "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Truck_Reporting",
+                    "viewId": "Truck_Reporting",
+                    "viewLevel": 1
+                },
+                "TruckQueue": {
+                     "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Truck_Queue",
+                    "viewId": "Truck_Queue", 
+                    "viewLevel": 1
+                },
+                     "PreQualityException": {
+                     "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "PreQuality_Exception",
+                    "viewId": "PreQuality_Exception", 
+                    "viewLevel": 1
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zgt_mm_inbound",
+        "_version": "1.1.0"
+    }
+}

@@ -1,0 +1,2 @@
+sap.ui.define(["jquery.sap.global"],function(jQuery){"use strict";var e={getPersData:function(){var e=new jQuery.Deferred;if(!this._oBundle){this._oBundle=this.oData}var r=this._oBundle;e.resolve(r);return e.promise()},setPersData:function(e){var r=new jQuery.Deferred;this._oBundle=e;r.resolve();return r.promise()},delPersData:function(e){var r=new jQuery.Deferred;r.resolve();return r.promise()}};return e},true);
+//# sourceMappingURL=DemoPersoService.js.map

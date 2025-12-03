@@ -1,0 +1,364 @@
+{
+    "resources": [
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": ".che/project.json"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/ZGW_GT_MM_WB_MOBILITY_SRV/metadata.xml"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "package-lock.json"
+        },
+        {
+            "name": "Fragments/WBItemList.fragment.xml"
+        },
+        {
+            "name": "Fragments/MaterialF4.fragment.xml"
+        },
+        {
+            "name": "Fragments/StorageLoc.fragment.xml"
+        },
+        {
+            "name": "Fragments/EwayGenerate.fragment.xml"
+        },
+        {
+            "name": "Fragments/GateFilter.fragment.xml"
+        },
+        {
+            "name": "Fragments/Signature.fragment.xml"
+        },
+        {
+            "name": "Fragments/SearchPOItem.fragment.xml"
+        },
+        {
+            "name": "Fragments/Queuing.fragment.xml"
+        },
+        {
+            "name": "Fragments/DelItemList.fragment.xml"
+        },
+        {
+            "name": "Fragments/PackingDetail.fragment.xml"
+        },
+        {
+            "name": "Fragments/GateFilter_GateExit.fragment.xml"
+        },
+        {
+            "name": "Fragments/Gate.fragment.xml"
+        },
+        {
+            "name": "Fragments/Queue.fragment.xml"
+        },
+        {
+            "name": "Fragments/PoList.fragment.xml"
+        },
+        {
+            "name": "Fragments/MatDocList.fragment.xml"
+        },
+        {
+            "name": "Fragments/LotF4.fragment.xml"
+        },
+        {
+            "name": "Fragments/PoItemList.fragment.xml"
+        },
+        {
+            "name": "Fragments/WbidF4.fragment.xml"
+        },
+        {
+            "name": "Fragments/EwayType.fragment.xml"
+        },
+        {
+            "name": "Fragments/ProcessType.fragment.xml"
+        },
+        {
+            "name": "Fragments/Unload_Item2901.fragment.xml"
+        },
+        {
+            "name": "Fragments/Plant.fragment.xml"
+        },
+        {
+            "name": "Fragments/RePrint.fragment.xml"
+        },
+        {
+            "name": "Fragments/WbidReprint.fragment.xml"
+        },
+        {
+            "name": "Fragments/ReprintEway.fragment.xml"
+        },
+        {
+            "name": "Fragments/GateExit.fragment.xml"
+        },
+        {
+            "name": "Fragments/OCR_WBList.fragment.xml"
+        },
+        {
+            "name": "Fragments/CaptureImage.fragment.xml"
+        },
+        {
+            "name": "Fragments/GetEwayDet.fragment.xml"
+        },
+        {
+            "name": "Fragments/PreQAEway.fragment.xml"
+        },
+        {
+            "name": "Fragments/TruckNo.fragment.xml"
+        },
+        {
+            "name": "Fragments/VehicleAssignment.fragment.xml"
+        },
+        {
+            "name": "Fragments/PDF.fragment.xml"
+        },
+        {
+            "name": "Fragments/Approve.fragment.xml"
+        },
+        {
+            "name": "Fragments/RemarksItem.fragment.xml"
+        },
+        {
+            "name": "Fragments/EwayUpdate.fragment.xml"
+        },
+        {
+            "name": "Fragments/Material.fragment.xml"
+        },
+        {
+            "name": "Fragments/PackingMat.fragment.xml"
+        },
+        {
+            "name": "Fragments/Transporter.fragment.xml"
+        },
+        {
+            "name": "Fragments/Batch.fragment.xml"
+        },
+        {
+            "name": "Fragments/BatchQA.fragment.xml"
+        },
+        {
+            "name": "Fragments/ReprintGen.fragment.xml"
+        },
+        {
+            "name": "Fragments/BatchChar.fragment.xml"
+        },
+        {
+            "name": "Fragments/Personalize.fragment.xml"
+        },
+        {
+            "name": "Fragments/Uom.fragment.xml"
+        },
+        {
+            "name": "Fragments/VehicleNo.fragment.xml"
+        },
+        {
+            "name": "Fragments/Unload_Item.fragment.xml"
+        },
+        {
+            "name": "Fragments/Vendor.fragment.xml"
+        },
+        {
+            "name": "Fragments/QAUpdate.fragment.xml"
+        },
+        {
+            "name": "Fragments/PDFBR.fragment.xml"
+        },
+        {
+            "name": "Fragments/EwayBatch.fragment.xml"
+        },
+        {
+            "name": "Fragments/MaterialF4CFM.fragment.xml"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/PreQuality_Check.controller.js"
+        },
+        {
+            "name": "controller/Gate_Entry.controller.js"
+        },
+        {
+            "name": "controller/Inbound.controller.js"
+        },
+        {
+            "name": "controller/PreQuality_CheckItem.controller.js"
+        },
+        {
+            "name": "controller/Unloading_Confirm.controller.js"
+        },
+        {
+            "name": "controller/EwayBill.controller.js"
+        },
+        {
+            "name": "controller/BatchUpdate.controller.js"
+        },
+        {
+            "name": "controller/Vehicle_Assignment.controller.js"
+        },
+        {
+            "name": "controller/Approve.controller.js"
+        },
+        {
+            "name": "controller/WBQTY_Update.controller.js"
+        },
+        {
+            "name": "controller/EwayDetail.controller.js"
+        },
+        {
+            "name": "controller/Status_Update.controller.js"
+        },
+        {
+            "name": "controller/Gate_Exit.controller.js"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "i18n/i18n_fr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_pt.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_tr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "lib/signature.js"
+        },
+        {
+            "name": "lib/custom.js"
+        },
+        {
+            "name": "lib/canvas2image.js"
+        },
+        {
+            "name": "lib/DemoPersoService.js"
+        },
+        {
+            "name": "lib/whsign.js"
+        },
+        {
+            "name": "lib/html2canvas.min.js"
+        },
+        {
+            "name": "package.json"
+        },
+        {
+            "name": "Util/Formatter.js"
+        },
+        {
+            "name": "Util/DemoPersoService.js"
+        },
+        {
+            "name": "Util/DemoPersoExit.js"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "ScannerAppLibrary/quagga.min.js"
+        },
+        {
+            "name": "ScannerAppLibrary/index.min.js"
+        },
+        {
+            "name": "images/BG3.png"
+        },
+        {
+            "name": "images/bg1.jpg"
+        },
+        {
+            "name": "images/camera.png"
+        },
+        {
+            "name": "images/barcode.png"
+        },
+        {
+            "name": "images/bg2.jpg"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "dist/di.code-validation.core_issues.json"
+        },
+        {
+            "name": "view/Gate_Entry.view.xml"
+        },
+        {
+            "name": "view/Inbound.view.xml"
+        },
+        {
+            "name": "view/PreQuality_CheckItem.view.xml"
+        },
+        {
+            "name": "view/PreQuality_Check.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/BatchUpdate.view.xml"
+        },
+        {
+            "name": "view/WBQTY_Update.view.xml"
+        },
+        {
+            "name": "view/EwayBill.view.xml"
+        },
+        {
+            "name": "view/Approve.view.xml"
+        },
+        {
+            "name": "view/Status_Update.view.xml"
+        },
+        {
+            "name": "view/Vehicle_Assignment.view.xml"
+        },
+        {
+            "name": "view/Unloading_Confirm.view.xml"
+        },
+        {
+            "name": "view/Gate_Exit.view.xml"
+        },
+        {
+            "name": "view/EwayDetail.view.xml"
+        },
+        {
+            "name": "Gruntfile.js"
+        }
+    ]
+}
