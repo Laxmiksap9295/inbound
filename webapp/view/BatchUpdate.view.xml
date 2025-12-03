@@ -1,0 +1,139 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.BatchUpdate"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc" xmlns:l="sap.ui.layout">
+	<Page id="id_BatchUpdate" showHeader="true" showFooter="true">
+		<customHeader>
+			<Bar class="Inbound_Bar1">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Label text="{i18n>CharUpdate}" id="id_HeaderText" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://settings" press="fnOpenSettings" class="InboundBtnIcon"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm id="SimpleFormDisplayBatch" editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4"
+				labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content>
+					<Label text="{i18n>Label22}" id="id_InDateLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<DatePicker id="id_InDateBatch" change="fnChangeInDate" valueFormat="YYYY-MM-dd" displayFormat="dd.MM.YYYY"></DatePicker>
+					<Label text="{i18n>Label6}" id="id_InVehicleLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input placeholder="{i18n>Label6}" submit="onClickVehicleF4" class="Inbound_InputBrd" id="id_InVehicleNoBatch" valueHelpOnly="true"
+						showValueHelp="true" valueHelpRequest="onClickVehicleF4" liveChange="fnChangeVehicle" value=""/>
+					<Label text="{i18n>PurchOrd}" id="id_InPoLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" id="id_InPO" class="Inbound_InputBrd"></Input>
+					<Label text="{i18n>PR_LOT}" design="Bold" id="id_InLotLabel" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" id="id_InPrLot" class="Inbound_InputBrd"></Input>
+					<Label text="{i18n>UnloadLgort}" id="id_InLocLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" id="id_InUnloc" class="Inbound_InputBrd"></Input>
+					<core:Title class="cl_SfTitle"/>
+					<Label text="{i18n>Label3}" design="Bold" id="id_InWbBatchLabel" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" valueHelpRequest="onClickVehicleF4" id="id_InWbidBatch" class="Inbound_InputBrd"></Input>
+					<!--Transporter-->
+					<Label text="{i18n>Label13}" visible="false" design="Bold" id="id_InWbTransLabel" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input id="id_InWbidTrans" visible="false" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="fnTransHelp" class="Inbound_InputBrd"></Input>
+					<!--End of Transporter-->
+					<Label text="{i18n>SelCharg}" id="id_InBatchLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" id="id_InBatchValue" class="Inbound_InputBrd" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onPrLotF4"></Input>
+					<Label text="{i18n>Text21}" id="id_InMatLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" id="id_InMatnr" class="Inbound_InputBrd"></Input>
+					<Label text="{i18n>Maktx}" id="id_InMaktxLabel" design="Bold" class="sapUiTinyMarginTop Inbound_SimpleForm"></Label>
+					<Input value="" enabled="false" id="id_InMaktx" class="Inbound_InputBrd"></Input>
+				</f:content>
+			</f:SimpleForm>
+			<Toolbar class="sapUiSmallMarginBeginEnd">
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="{i18n>Label11}" id="id_BtnSubmitText" enabled="true" press="onPressCheck" class="Inbound_BtnClr"></Button>
+				<!--<Button id="id_BtnSave" text="{i18n>Label14}" press="onStatusSubmit" class="Inbound_BtnClr" visible="false"></Button>-->
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>
+			<Panel id="id_BatchPanel" class="cl_BatchPanel"></Panel>
+			<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+				<List id="id_ListItemOut" headerText="{i18n>PRLotDet}" visible="true" showNoData="false" class="cl_ListHeader sapUiSmallMarginTop"
+					growing="true" items="{JmLoadBags>/}">
+					<CustomListItem class="listitemCssSub sapUiTinyMarginTop">
+						<Toolbar class="cl_Tb " height="3rem">
+							<Label text="{i18n>LoadTotBag}" class="cl_font sapUiSmallMarginTop sapUiTinyMarginBegin"/>
+							<Text text=": {JmLoadBags>LoadTotBag}" class="cl_LotWt sapUiSmallMarginTop"></Text>
+							<Label text="{i18n>LoadWt}" class="cl_font sapUiSmallMarginTop sapUiTinyMarginBegin"/>
+							<Text text=": {JmLoadBags>LoadWt}" class="cl_LotWt sapUiSmallMarginTop"></Text>
+							<ToolbarSpacer/>
+						</Toolbar>
+						<f:SimpleForm id="SimpleFormDisplay480_PROUT" editable="false" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12"
+							labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="6"
+							columnsL="6" columnsM="6" singleContainerFullSize="false" class="">
+							<f:content>
+								<core:Title class="cl_FormTitle"/>
+								<Label text="{i18n>Ebeln}" class="cl_font sapUiTinyMarginTop"/>
+								<Input class="Input_PM " value="{JmLoadBags>Ebeln}" editable="false"/>
+								<Label text="{i18n>LoadSoundBag}" required="true" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>LoadSoundBag}" class="Input_PM " maxLength="6" editable="true" type="Number" change="fnCalcBags">
+									<layoutData>
+										<FlexItemData growFactor="5"/>
+									</layoutData>
+								</Input>
+								<core:Title class="cl_FormTitle"/>
+								<Label text="{i18n>Ebelp}" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>Ebelp}" class="Input_PM " editable="false"></Input>
+								<Label text="{i18n>LoadTornBag}" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>LoadTornBag}" class="Input_PM " maxLength="6" editable="true" type="Number" change="fnCalcBags"></Input>
+								<core:Title class="cl_FormTitle"/>
+								<Label text="{i18n>Matnr}" class="cl_font sapUiTinyMarginTop"/>
+								<Input class="Input_PM " editable="false" value="{parts: [{path: 'JmLoadBags>Matnr'}], formatter: '.Formatter.LeadingZero'}"></Input>
+								<Label text="{i18n>LoadModBag}" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>LoadModBag}" class="Input_PM " maxLength="6" editable="true" type="Number" change="fnCalcBags"></Input>
+								<core:Title class="cl_FormTitle"/>
+								<Label text="{i18n>Label19}" class="cl_font sapUiTinyMarginTop"/>
+								<Input class="Input_PM " editable="false" value="{JmLoadBags>Maktx}"></Input>
+								<Label text="{i18n>LoadEmpty}" visible="{= ( ${JmOrigin>/Origin} === 'F' || ${JmOrigin>/Origin}==='I') ? true : false}"
+									class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>LoadTornEmpty}" visible="{= ( ${JmOrigin>/Origin} === 'F' || ${JmOrigin>/Origin}==='I') ? true : false}"
+									class="Input_PM " maxLength="6" editable="true" type="Number" change="fnCalcBags"></Input>
+								<!--Hatch Field-->
+								<core:Title class="cl_FormTitle"/>
+								<Label text="{i18n>POPR}" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>Bwtar}" class="Input_PM " editable="false">
+									<layoutData>
+										<FlexItemData growFactor="5"/>
+									</layoutData>
+								</Input>
+								<Label text="{i18n>LoadSample}" visible="{=${JmOrigin>/Origin}==='F' ? true : false }" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>LoadSampleBag}" visible="{=${JmOrigin>/Origin}==='F' ? true : false }" class="Input_PM " maxLength="6"
+									editable="true" type="Number" change="fnCalcBags"></Input>
+								<Label text="{i18n>Hatch}" visible="{=${JmOrigin>/Origin}==='I' ? true : false }" class="cl_font sapUiTinyMarginTop"/>
+								<Select id="id_SelHatch" enabled="true" items="{JmHatch>/}" change="fnChangeHatch" selectedKey="{JmLoadBags>Hatch}"
+									visible="{=${JmOrigin>/Origin}==='I' ? true : false }" forceSelection="false">
+									<core:Item key="{JmHatch>Hatchvalue}" text="{JmHatch>Hatchvalue}" class="cl_selText"/>
+								</Select>
+								<core:Title class="cl_FormTitle"/>
+								<Label text="{i18n>Lotno}" class="cl_font sapUiTinyMarginTop" visible="true"/>
+								<Input value="{JmLoadBags>Lotno}" class="Input_PM " editable="false" visible="true">
+									<layoutData>
+										<FlexItemData growFactor="10"/>
+									</layoutData>
+								</Input>
+								<Label text="{i18n>LoadObs}" class="cl_font sapUiTinyMarginTop"/>
+								<Input value="{JmLoadBags>SendRef}" maxLength="40" class="Input_PM" type="Text" editable="true"></Input>
+							</f:content>
+						</f:SimpleForm>
+					</CustomListItem>
+				</List>
+			</ScrollContainer>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button icon="sap-icon://print" id="id_ReprintBtn" press="fnReprintDialog" text="{i18n>Reprint}"
+					class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBegin"></Button>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="{i18n>SaveChar}" id="id_BtnSave" enabled="false" press="onPressSave" class="Inbound_BtnClr"></Button>
+				<!--<Button id="id_BtnSave" text="{i18n>Label14}" press="onStatusSubmit" class="Inbound_BtnClr" visible="false"></Button>-->
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="{i18n>SaveChng}" id="id_BtnSavePort" enabled="false" press="onPressSaveChanges" class="Inbound_BtnClr"></Button>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

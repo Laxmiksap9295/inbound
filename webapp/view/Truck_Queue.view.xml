@@ -1,0 +1,202 @@
+<mvc:View
+    controllerName="ZGT_MM_INBOUND.controller.Truck_Queue"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page title="{i18n>TruckQueueManagement}">
+        <customHeader>
+            <Bar class="Inbound_Bar1">
+                <contentLeft>
+                    <Button
+                        icon="sap-icon://nav-back"
+                        press="onNavBack"
+                        tooltip="{i18n>Tooltip2}"
+                        class="Inbound_NavBtn" />
+                </contentLeft>
+                <contentMiddle justifyContent="Center">
+                    <ToolbarSpacer />
+                    <Label text="{i18n>TruckQueueManagement}" class="Inbound_Title" />
+                    <ToolbarSpacer />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <HBox width="100%" justifyContent="SpaceBetween" class="sapUiSmallMargin">
+
+                <!-- Column 1: Purchase Commodity -->
+                <VBox width="32%" class="sapUiSmallMarginEnd"
+                      visible="{= ${TruckModel>/Flags/View} === 'X'}">
+                    <Text text="{i18n>PurchaseCommodity}" class="sectionHeader" />
+
+                    <ScrollContainer width="100%" horizontal="true" vertical="false">
+                        <Table id="idPurchaseCommodityTable"
+                               items="{TruckModel>/PurchaseCommodity}"
+                               inset="false"
+                               mode="SingleSelectMaster"
+                               selectionChange=".onTableSelectionChange"
+                               width="1200px"
+                               visibleRowCountMode="Auto"
+                               visibleRowCount="10">
+                            <columns>
+                                <Column minWidth="100"><Text text="{i18n>WeighbridgeId}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>VehicleNo}" /></Column>
+                                <Column minWidth="80"><Text text="{i18n>Priority}" /></Column>
+                                <Column minWidth="80"><Text text="{i18n>Sequence}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Delivery}" /></Column>
+                                <Column minWidth="150"><Text text="{i18n>Description}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Direction}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Driver}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>DriverNumber}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Material}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>PO}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Process}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Date}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Time}" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active">
+                                    <cells>
+                                        <Text text="{TruckModel>WbId}" />
+                                        <Text text="{TruckModel>Vehno}" />
+                                        <Text text="{TruckModel>Priority}" />
+                                        <Text text="{TruckModel>Sequence}" />
+                                        <Text text="{TruckModel>Delivery}" />
+                                        <Text text="{TruckModel>Description}" />
+                                        <Text text="{TruckModel>Direction}" />
+                                        <Text text="{TruckModel>Driver}" />
+                                        <Text text="{TruckModel>DriverNumber}" />
+                                        <Text text="{TruckModel>Material}" />
+                                        <Text text="{TruckModel>Po}" />
+                                        <Text text="{TruckModel>Process}" />
+                                        <Text text="{TruckModel>Erdat}" />
+                                        <Text text="{TruckModel>Ertim}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                </VBox>
+
+                <!-- Column 2: Transfers -->
+                <VBox width="32%" class="sapUiSmallMarginEnd"
+                      visible="{= ${TruckModel>/Flags/View} === 'X'}">
+                    <Text text="{i18n>Transfers}" class="sectionHeader" />
+
+                    <ScrollContainer width="100%" horizontal="true" vertical="false">
+                        <Table id="idTransfersTable"
+                               items="{TruckModel>/Transfers}"
+                               inset="false"
+                               mode="SingleSelectMaster"
+                               selectionChange=".onTableSelectionChange"
+                               width="1200px"
+                               visibleRowCountMode="Auto"
+                               visibleRowCount="10">
+                            <columns>
+                                <Column minWidth="100"><Text text="{i18n>WeighbridgeId}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>VehicleNo}" /></Column>
+                                <Column minWidth="80"><Text text="{i18n>Priority}" /></Column>
+                                <Column minWidth="80"><Text text="{i18n>Sequence}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Delivery}" /></Column>
+                                <Column minWidth="150"><Text text="{i18n>Description}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Direction}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Driver}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>DriverNumber}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Material}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>PO}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Process}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Date}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Time}" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active">
+                                    <cells>
+                                        <Text text="{TruckModel>WbId}" />
+                                        <Text text="{TruckModel>Vehno}" />
+                                        <Text text="{TruckModel>Priority}" />
+                                        <Text text="{TruckModel>Sequence}" />
+                                        <Text text="{TruckModel>Delivery}" />
+                                        <Text text="{TruckModel>Description}" />
+                                        <Text text="{TruckModel>Direction}" />
+                                        <Text text="{TruckModel>Driver}" />
+                                        <Text text="{TruckModel>DriverNumber}" />
+                                        <Text text="{TruckModel>Material}" />
+                                        <Text text="{TruckModel>Po}" />
+                                        <Text text="{TruckModel>Process}" />
+                                        <Text text="{TruckModel>Erdat}" />
+                                        <Text text="{TruckModel>Ertim}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                </VBox>
+
+                <!-- Column 3: Purchase NCP -->
+                <VBox width="31%" visible="{= ${TruckModel>/Flags/View} === 'X'}">
+                    <Text text="{i18n>PurchaseNCP}" class="sectionHeader" />
+
+                    <ScrollContainer width="100%" horizontal="true" vertical="false">
+                        <Table id="idPurchaseNCPTable"
+                               items="{TruckModel>/PurchaseNCP}"
+                               inset="false"
+                               mode="SingleSelectMaster"
+                               selectionChange=".onTableSelectionChange"
+                               width="1200px"
+                               visibleRowCountMode="Auto"
+                               visibleRowCount="10">
+                            <columns>
+                                <Column minWidth="100"><Text text="{i18n>WeighbridgeId}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>VehicleNo}" /></Column>
+                                <Column minWidth="80"><Text text="{i18n>Priority}" /></Column>
+                                <Column minWidth="80"><Text text="{i18n>Sequence}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Delivery}" /></Column>
+                                <Column minWidth="150"><Text text="{i18n>Description}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Direction}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Driver}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>DriverNumber}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Material}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>PO}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Process}" /></Column>
+                                <Column minWidth="120"><Text text="{i18n>Date}" /></Column>
+                                <Column minWidth="100"><Text text="{i18n>Time}" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active">
+                                    <cells>
+                                        <Text text="{TruckModel>WbId}" />
+                                        <Text text="{TruckModel>Vehno}" />
+                                        <Text text="{TruckModel>Priority}" />
+                                        <Text text="{TruckModel>Sequence}" />
+                                        <Text text="{TruckModel>Delivery}" />
+                                        <Text text="{TruckModel>Description}" />
+                                        <Text text="{TruckModel>Direction}" />
+                                        <Text text="{TruckModel>Driver}" />
+                                        <Text text="{TruckModel>DriverNumber}" />
+                                        <Text text="{TruckModel>Material}" />
+                                        <Text text="{TruckModel>Po}" />
+                                        <Text text="{TruckModel>Process}" />
+                                        <Text text="{TruckModel>Erdat}" />
+                                        <Text text="{TruckModel>Ertim}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                </VBox>
+
+            </HBox>
+        </content>
+
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button
+                    text="{i18n>Prioritize}"
+                    type="Emphasized"
+                    press=".onPrioritize"
+                    visible="{= ${TruckModel>/Flags/Edit} === 'X'}" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

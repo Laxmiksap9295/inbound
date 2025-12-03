@@ -1,0 +1,57 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.PreQuality_CheckItem"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:m="sap.m">
+	<App>
+		<pages>
+			<Page id="id_prequality" title="{i18n>Titlet}">
+				<customHeader>
+					<Bar class="Inbound_Bar1">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Label text="{i18n>Title8}" class="Inbound_Title" design="Bold"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<content>
+					<Table id="pre_qual" items="{ITEM>/PreQualNav/results}">
+						<columns>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="9rem">
+								<Label text="{i18n>Label3}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Label18}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Column8}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Column5}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Column6}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Label4}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+						
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="onPressQualItem">
+								<cells>
+									<Text text="{ITEM>Wbid}"></Text>
+									<Text text="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'}],formatter:'Formatter.PO'}"></Text>
+									<Text text="{parts:[{path:'ITEM>Ebeln'},{path:'ITEM>Vbeln'},{path:'ITEM>Ebelp'},{path:'ITEM>Posnr'}],
+												formatter:'Formatter.PoItem'}"></Text>
+									<Text text="{ITEM>Matnr}"></Text>
+									<Text text="{ITEM>Matxt}"></Text>
+									<Text text="{ITEM>Werks}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

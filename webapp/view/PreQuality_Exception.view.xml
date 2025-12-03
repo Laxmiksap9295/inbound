@@ -1,0 +1,111 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.PreQuality_Exception">
+    <Page title="{i18n>PreQualityException}">
+        <customHeader>
+            <Bar class="Inbound_Bar1">
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn" />
+                </contentLeft>
+                <contentMiddle justifyContent="Center">
+                    <ToolbarSpacer />
+                    <Label text="{i18n>PreQualityException}" class="Inbound_Title" />
+                    <ToolbarSpacer />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <!-- Table -->
+            <Table id="idExceptionTable" inset="false" items="{ExceptionModel>/}" >
+             
+                <columns>
+                    <Column>
+                        <Text text="{i18n>WeighbridgeId}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Item}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Material}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>MaterialDescription}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>PurchOrd}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Item}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Plant}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Batch}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>vendorNo}" />
+                    </Column>
+
+                    <Column>
+                        <Text text="{i18n>Quantity}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Exception}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ExceptionModel>WbId}" />
+                             <Text text="{ExceptionModel>Item}" />
+                            <Text text="{ExceptionModel>Material}" />
+                            <Text text="{ExceptionModel>Description}" />
+                            <Text text="{ExceptionModel>Ebeln}" />
+                            <Text text="{ExceptionModel>Ebelp}" />
+                            <Text text="{ExceptionModel>Werks}" />
+                            <Text text="{ExceptionModel>Batch}" />
+                            <Text text="{ExceptionModel>Vendor}" />
+                            <Text text="{ExceptionModel>Menge}" />
+                            <Link text="{i18n>Reviewexception}" press=".onReviewExceptionPress" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+
+    <!-- Exception Review Dialog -->
+    <Dialog id="idExceptionDialog" title="{i18n>Reviewexception}" stretchOnPhone="true">
+         <customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>Reviewexception}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<!--<Button icon="sap-icon://decline" press="_DialogClose" class="Inbound_NavBtn" id="id_BatchCancle"></Button>-->
+					<Button icon="sap-icon://decline" press="onREclose" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+        <content>
+        <VBox class="sapUiSmallMargin">
+            <Label text="{i18n>GradeChange}" />
+            <!-- <Text id="idGradeChange" /> -->
+             <Input id="idGradeChange" value="{Grade}"  />
+
+            <Label text="{i18n>Surcharge}" />
+            <Input id="idSurcharge" value="{Surcharge}"  />
+
+            <Label text="{i18n>Reason}" />
+            <Input id="idReason" value="{Reason}"  />
+        </VBox>
+        </content>
+        <endButton>
+            <Button text="{i18n>Reject}" type="Reject" press=".onReject" />
+        </endButton>
+        <beginButton>
+            <Button text="{i18n>Approve}" type="Accept" press=".onApprove" />
+        </beginButton>
+    </Dialog>
+</mvc:View>

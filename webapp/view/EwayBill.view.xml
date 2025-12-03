@@ -1,0 +1,320 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.EwayBill"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<!-- Vehicle Assignment Detail-1-->
+	<App>
+		<pages>
+			<Page id="id_ewaybill" class="page_bg">
+				<customHeader>
+					<Bar class="Inbound_Bar1">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onNavBackEway" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Label text="{i18n>QALable}" class="Inbound_Title" design="Bold"/>
+						</contentMiddle>
+						<contentRight>
+							<!--<SearchField id="id_SearchFieldNew" liveChange="fnSearchWbid" class="sapUiSizeCompact" width="50%" visible="false"/>-->
+							<!--<SearchField id="id_SearchFieldUpdate" liveChange="fnSearchWbid1" class="sapUiSizeCompact" width="50%" visible="false"/>-->
+							<!--<Button icon="sap-icon://settings" press="OpenSelection" class="InboundBtnIcon"></Button>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<IconTabBar select="fnSegmentedChange" id="id_segmentbtn" class="sapUiResponsiveContentPadding cl_icontab InboundIconTabBar cl_icontab">
+						<items>
+							<IconTabFilter icon="sap-icon://inventory" class="Inbound_IconFilter cl_icontab" id="id_generateTab" text="{i18n>Generate}" key="GEN">
+								<Toolbar class="cl_Tool" height="3rem">
+									<SearchField placeholder="{i18n>Search}" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiSizeCompact " id="id_SearchFieldWbid"
+										visible="true" change="fnFilterWbid" liveChange="fnFilterWbid" width="30%"/>
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button icon="sap-icon://bar-code" id="id_ScanBtnWbid" press="fnSearchScanWbid" text="{i18n>Label2}"
+										class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>
+									<Button icon="sap-icon://clear-filter" id="id_ClearBtn" press="fnClearFilter" text="{i18n>ClFilter}"
+										class="GRheaderBtn1 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>
+								</Toolbar>
+								<Table id="id_NewEwayTab" items="{JMEwayList>/}" class="newTableClass_CSQ sapUiTinyMarginTop" growing="true" growingScrollToLoad="true"
+									growingThreshold="100">
+									<columns>
+										<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="9rem">
+											<Label text="{i18n>WbIdlabel}" design="Bold" class="tableheaderClass_CSQ"/>
+										</Column>
+										<!--<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">-->
+										<!--	<Label text="{i18n>WBItem}" design="Bold" class="tableheaderClass_CSQ"/>-->
+										<!--</Column>-->
+										<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+											<Label text="{i18n>Column4}" design="Bold" class="tableheaderClass_CSQ"/>
+										</Column>
+										<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+											<Label text="{i18n>VehTyp}" design="Bold" class="tableheaderClass_CSQ"></Label>
+										</Column>
+										<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+											<Label text="{i18n>Label25}" design="Bold" class="tableheaderClass_CSQ"></Label>
+										</Column>
+										<!--<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+										<!--	<Label text="{i18n>Ebelp}" design="Bold" class="tableheaderClass_CSQ"/>-->
+										<!--</Column>-->
+										<!--<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+										<!--	<Label text="{i18n>Matnr}" design="Bold" class="tableheaderClass_CSQ"/>-->
+										<!--</Column>-->
+										<!--<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+										<!--	<Label text="{i18n>Maktx}" design="Bold" class="tableheaderClass_CSQ"/>-->
+										<!--</Column>-->
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onPressEwayBillNewItem">
+											<cells>
+												<Text text="{JMEwayList>Wbid}"></Text>
+												<!--<Text text="{JMEwayList>Item}"></Text>-->
+												<Text text="{JMEwayList>Vehno}"></Text>
+												<!--<Text text="{path:'JMEwayList>Matnr',formatter:'ZGT_MM_INBOUND.Formatter.fnLeadZero'}"></Text>-->
+												<Text text="{JMEwayList>Vehtyp}"></Text>
+												<Text text="{JMEwayList>Lifnr}"></Text>
+												<!--<Text text="{parts:[{path:'oQualityModel>Ebeln'},{path:'oQualityModel>Ebeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"></Text>-->
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							<IconTabSeparator icon="sap-icon://open-command-field" class="cl_IconSep"/>
+							<IconTabFilter icon="sap-icon://inventory" class="Inbound_IconFilter cl_icontab" id="id_UpdateTab" text="{i18n>Update}" key="UPD">
+								<f:Form id="id_Form" editable="false">
+									<f:layout>
+										<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+											emptySpanL="0" emptySpanM="0" emptySpanS="1" columnsXL="3" columnsL="3" columnsM="3" columnsS="2" singleContainerFullSize="false"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer>
+											<f:formElements>
+												<f:FormElement label="{i18n>WbIdlabel}" class="cl_Bold">
+													<f:fields>
+														<!--<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGen>/Wbid}" editable="false"></Input>-->
+														<HBox visible="true">
+															<Input value="{JMQALableUpdateHeader>/0/Wbid}" maxLength='12' width="100%" class="Input_PM sapUiTinyMarginEnd sapUiSizeCompact"
+																showValueHelp="true" enabled="true" valueHelpRequest="onf4Wbid">
+																<layoutData>
+																	<FlexItemData growFactor="1"/>
+																</layoutData>
+															</Input>
+															<Button icon="sap-icon://bar-code" class="sapUiSizeCompact cl_scabbtn" type="Emphasized" press="fnScanWbid" tooltip="{i18n>ScanWB}"/>
+														</HBox>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>Label25}">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateHeader>/0/Lifnr} - {JMQALableUpdateHeader>/0/LifnrName}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>ProType}">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateHeader>/0/Wtype}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+										<f:FormContainer >
+											<f:formElements>
+												<f:FormElement label="{i18n>Eway}" class="cl_Bold">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateStatus>/0/CarteGrise}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>DriverName}" class="cl_Bold">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateHeader>/0/Dname}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>RefNo}">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateHeader>/0/Token}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+										<f:FormContainer >
+											<f:formElements>
+												<f:FormElement label="{i18n>EwayDate}">
+													<f:fields>
+														<DatePicker editable="false" id="id_ewaydate" placeholder="Enter Date" change="handleChange" class="sapUiSizeCompact"
+															displayFormat="dd.MM.yyyy" valueFormat="dd.MM.yyyy"/>
+														<!--value="{path:'JMQALableUpdateStatus>/0/Bmcnu',formatter:'ZGT_MM_INBOUND.Util.Formatter.Date'}"-->
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>Label9}">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateHeader>/0/DriverMob}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>VehTyp}">
+													<f:fields>
+														<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateHeader>/0/Vehtyp}" editable="false"></Input>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+								<List id="" visible="true" showNoData="false" class="cl_ListHeader sapUiSmallMarginTop" growing="true" items="{JMQALableUpdateItem>/}">
+									<CustomListItem class="listitemCssSub sapUiTinyMarginTop">
+										<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12"
+											adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4"
+											singleContainerFullSize="false" class="">
+											<f:content>
+												<core:Title class="cl_FormTitle"/>
+												<Label text="{i18n>WBItem}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Item}" editable="false"></Input>
+												<Label text="{i18n>Batch}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Batch}" required="true" maxLength="10" editable="false"></Input>
+												<Label text="{i18n>MatCount}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Dwerk}" maxLength="7"
+													liveChange="fnlivechangeOnlyNumber"></Input>	<!--Remove required="true" by Pavan on 29/03/2023-->
+												<core:Title class="cl_FormTitle"/>
+												<Label text="{i18n>Ebeln}" class="cl_font "/>
+												<!--<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Ebeln}" editable="false"></Input>-->
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Ebeln}" editable="false"
+													visible="{path:'JMQALableUpdateItem>Ebeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+												<Label text="{i18n>Vbeln}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Vbeln}" editable="false"
+													visible="{path:'JMQALableUpdateItem>Vbeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+												<Label text="{i18n>EwayQty}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Config1}" required="true" type="Number" change="fnValidateEwayQty"
+													submit="fnValidateEwayQty"></Input>
+												<Label text="{i18n>Caliber}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Remarks}" maxLength="50"></Input>
+												<core:Title class="cl_FormTitle"/>
+												<Label text="{i18n>Ebelp}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Ebelp}" editable="false"
+													visible="{path:'JMQALableUpdateItem>Ebeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+												<!--parts:[{path:'JMQALableUpdateItem>Ebeln'},{path:'JMQALableUpdateItem>Ebelp'}],formatter:'ZGT_MM_INBOUND.model.formatter.fnPosnrVisible'"-->
+												<Label text="{i18n>Posnr}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Posnr}" editable="false"
+													visible="{path:'JMQALableUpdateItem>Vbeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+												<Label text="{i18n>EwayUom}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Config4}" required="true" valueHelpOnly="true" showValueHelp="true"
+													valueHelpRequest="onUOMf4"></Input>
+												<core:Title class="cl_FormTitle"/>
+												<Label text="{i18n>Text21}" class="cl_font "/>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Matnr}" editable="false"></Input>
+												<Label text="{i18n>MatType}" required="true" class="cl_font "/>		<!--Added required="true" by Pavan on 29/03/2023-->
+												<Link text="{i18n>Matdetail}" class="cl_ColumnText cl_link sapUiTinyMarginTop" press="fnOpenPackingMaterialDetail"></Link>
+												<!--<Input class="Input_PM sapUiSizeCompact" value="{JMQALableUpdateItem>Pmat2}" required="true" valueHelpOnly="true" showValueHelp="true"-->
+												<!--	valueHelpRequest="onF4PackMatType"></Input>-->
+											</f:content>
+										</f:SimpleForm>
+									</CustomListItem>
+								</List>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					<!--First Changes Start-->
+					<!--<VBox visible="false" id="id_NewEway">-->
+					<!--	<Toolbar class="cl_UnloadTB">-->
+					<!--		<Text text="{i18n>EwayGen}" class="cl_font sapUiTinyMarginBeginEnd"></Text>-->
+					<!--		<ToolbarSpacer/>-->
+					<!--		<Button icon="sap-icon://bar-code" press="fnScanWBNew" text="{i18n>Label2}" class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>-->
+					<!--		<Button icon="sap-icon://clear-filter" press="fnClearFilter" text="{i18n>ClFilter}"-->
+					<!--			class="GRheaderBtn1 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>-->
+					<!--	</Toolbar>-->
+					<!--	<Table id="id_NewEwayTab" items="{JMEwayList>/}" class="newTableClass_CSQ" growing="true" growingScrollToLoad="true" growingThreshold="100">-->
+					<!--		<columns>-->
+					<!--			<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="9rem">-->
+					<!--				<Label text="{i18n>WbIdlabel}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>WBItem}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Column4}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Ebeln}" design="Bold" class="tableheaderClass_CSQ"></Label>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Ebelp}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Matnr}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Maktx}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--		</columns>-->
+					<!--		<items>-->
+					<!--			<ColumnListItem type="Active" press="onPressEwayBillNewItem">-->
+					<!--				<cells>-->
+					<!--					<Text text="{JMEwayList>Wbid}"></Text>-->
+					<!--					<Text text="{JMEwayList>Item}"></Text>-->
+					<!--					<Text text="{JMEwayList>Vehno}"></Text>-->
+					<!--					<Text text="{JMEwayList>Ebeln}"></Text>-->
+					<!--					<Text text="{JMEwayList>Ebelp}"></Text>-->
+					<!--					<Text text="{path:'JMEwayList>Matnr',formatter:'ZGT_MM_INBOUND.Formatter.fnLeadZero'}"></Text>-->
+					<!--					<Text text="{JMEwayList>Maktx}"></Text>-->
+					<!--<Text text="{parts:[{path:'oQualityModel>Ebeln'},{path:'oQualityModel>Ebeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"></Text>-->
+					<!--				</cells>-->
+					<!--			</ColumnListItem>-->
+					<!--		</items>-->
+					<!--	</Table>-->
+					<!--</VBox>-->
+					<!--<VBox visible="false" id="id_UpdateEway">-->
+					<!--	<Toolbar class="cl_UnloadTB">-->
+					<!--		<Text text="{i18n>UpdateEway}" class="cl_font sapUiTinyMarginBeginEnd"></Text>-->
+					<!--		<ToolbarSpacer/>-->
+					<!--		<Button icon="sap-icon://bar-code" press="fnScanWBNew" text="{i18n>Label2}" class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>-->
+					<!--		<Button icon="sap-icon://clear-filter" press="fnClearFilter" text="{i18n>ClFilter}"-->
+					<!--			class="GRheaderBtn1 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>-->
+					<!--	</Toolbar>-->
+					<!--	<Table id="id_TabEwayUpdate" items="{JMEwayModel>/}" class="newTableClass_CSQ">-->
+					<!--		<columns>-->
+					<!--			<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="9rem">-->
+					<!--				<Label text="{i18n>WbIdlabel}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>WBItem}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Column4}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Ebeln}" design="Bold" class="tableheaderClass_CSQ"></Label>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Ebelp}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Matnr}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">-->
+					<!--				<Label text="{i18n>Maktx}" design="Bold" class="tableheaderClass_CSQ"/>-->
+					<!--			</Column>-->
+					<!--		</columns>-->
+					<!--		<items>-->
+					<!--			<ColumnListItem type="Active" press="onPressEwayBillUpdateItem">-->
+					<!--				<cells>-->
+					<!--					<Text text="{JMEwayModel>/Wbid}"></Text>-->
+					<!--					<Text text="{JMEwayModel>/Vbeln}"></Text>-->
+					<!--					<Text text="{JMEwayModel>/Vbeln}"></Text>-->
+					<!--					<Text text="{JMEwayModel>/Vbeln}"></Text>-->
+					<!--					<Text text="{JMEwayModel>/Vbeln}"></Text>-->
+					<!--					<Text text="{JMEwayModel>/Vbeln}"></Text>-->
+					<!--					<Text text="{JMEwayModel>/Vbeln}"></Text>-->
+					<!--<Text text="{parts:[{path:'oQualityModel>Ebeln'},{path:'oQualityModel>Ebeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"></Text>-->
+					<!--				</cells>-->
+					<!--			</ColumnListItem>-->
+					<!--		</items>-->
+					<!--	</Table>-->
+					<!--</VBox>-->
+					<!--First Start End-->
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button text="{i18n>Reprint}" icon="sap-icon://print" press="fnReprintDialog" class="GRheaderBtn3 sapUiSizeCompact sapUiSmallMarginBegin"/>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button text="{i18n>Check}" icon="sap-icon://complete" press="fnCheckUpdate" id="id_updCheck"
+							class="Inbound_BtnClr cl_iconWhite sapUiSizeCompact sapUiSmallMarginEnd" visible="false"/>
+						<Button text="{i18n>Update}" icon="sap-icon://action" press="fnUpdateQALable" id="id_updBtn"
+							class="Inbound_BtnClr cl_iconWhite sapUiSizeCompact sapUiSmallMarginEnd" visible="false"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

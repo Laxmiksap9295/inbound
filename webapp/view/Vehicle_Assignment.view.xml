@@ -1,0 +1,57 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.Vehicle_Assignment"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page  enableScrolling="true" >
+		<customHeader>
+			<Bar class="Inbound_Bar1">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn" ></Button>
+				</contentLeft>
+				<contentMiddle>
+					<HBox>
+						<Label  design="Bold" class="Inbound_Title" 
+						text="{path:'HEADER>/FifoWbidNav/results/0/Erdat',formatter:'Formatter.Date'}"	></Label>
+						<Label text="{i18n>Label26}" class="Inbound_Title sapUiTinyMarginBegin sapUiTinyMarginEnd" design="Bold"></Label>
+						<Label id="id_Today" class="Inbound_Title" ></Label>
+					</HBox>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://settings" press="onSettings" class="InboundBtnIcon"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Table id="vech_ass" items="{HEADER>/FifoWbidNav/results}" class="newTableClass_CSQ">
+				<columns>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" visible="{/ColumnsItems/0/visible}">
+						<Label text="{i18n>Column1}" design="Bold" class="tableheaderClass_CSQ"/>
+					</Column>
+				
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" visible="{/ColumnsItems/1/visible}">
+						<Label text="{i18n>Column4}" design="Bold" class="tableheaderClass_CSQ"/>
+					</Column>
+					<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" visible="{/ColumnsItems/2/visible}">
+						<Label text="{i18n>Column10}" design="Bold" class="tableheaderClass_CSQ"/>
+					</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="{/ColumnsItems/3/visible}">
+						<Label text="{i18n>Column2}" design="Bold" class="Unload_InputLbl"/>
+					</Column>
+					<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="{/ColumnsItems/4/visible}">
+						<Label text="{i18n>Column3}" design="Bold" class="Unload_InputLbl"/>
+					</Column>
+				</columns>
+				<items class="Inbound_Hover">
+					<ColumnListItem type="Active" press="onPressVAListItem" >
+						<cells>
+							<Text text="{HEADER>Wbid}" > </Text>
+							<Text text="{HEADER>Vehno}" > </Text>
+							<Text text="{HEADER>DriverMob}" > </Text>
+							<Text text="{path:'HEADER>Erdat',formatter:'ZGT_MM_INBOUND.Util.Formatter.Date'}" > </Text>
+							<Text text="{path:'HEADER>Ertim/ms',formatter:'ZGT_MM_INBOUND.Util.Formatter.Time'}" > </Text>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

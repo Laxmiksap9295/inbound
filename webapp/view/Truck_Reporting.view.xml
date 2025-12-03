@@ -1,0 +1,331 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.Truck_Reporting"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:ndc="sap.ndc"
+    xmlns:l="sap.ui.layout"
+    xmlns:m="sap.ui.commons.layout">
+    <!-- Gate Entry-->
+    <Page id="id_GateEntry" enableScrolling="true" class="">
+        <customHeader>
+            <Bar class="Inbound_Bar1">
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+
+                </contentLeft>
+                <contentMiddle justifyContent="Center">
+                    <ToolbarSpacer />
+                    <Label text="{i18n>TruckReporting}" class="Inbound_Title" design="Bold" />
+                    <ToolbarSpacer />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://settings" press="onSettings" class="InboundBtnIcon"></Button>
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <Panel class="">
+                <content>
+                    <Toolbar visible="false" class="InboundToolbarbrdr" id="id_Param7">
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Switch state="true" id="id_Param7Key" class="Inbound_switchToggle" customTextOn="{i18n>withWB}" customTextOff="{i18n>withoutWB}" change="onWBChange"></Switch>
+                        <ToolbarSpacer></ToolbarSpacer>
+                    </Toolbar>
+                    <!--Added
+					by Avinash ~~ CFM Changes-->
+                    <Toolbar class="InboundToolbarbrdr" visible="false" height="2.5rem" id="id_RefTb">
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <!--<RadioButtonGroup id="id_Rbref" class="sapUiTinyMarginBeginEnd" selectedIndex="-1" visible="{=${oDisplayModel>/EvOrigin}==='H' ? true : false }"-->
+                        <RadioButtonGroup id="id_Rbref" class="sapUiTinyMarginBeginEnd" selectedIndex="-1" visible="false" columns="2" valueState="Success" select="fnRefChange">
+                            <RadioButton id="id_WithRb1" text="{i18n>WithRef}" class="cl_RbText" />
+                            <RadioButton id="id_WithoutRb2" text="{i18n>WithoutRef}" class="cl_RbText" />
+                        </RadioButtonGroup>
+                        <ToolbarSpacer></ToolbarSpacer>
+                    </Toolbar>
+                    <!--End
+					of Added-->
+                    <Toolbar id="id_VendorBox" visible="false" class="InboundToolbarbrdr">
+                        <!--<ToolbarSpacer></ToolbarSpacer>-->
+                        <Input placeholder="{i18n>Label25}" liveChange="onVendorLiveChange" class="Inbound_InputBrd sapUiTinyMarginBegin" showValueHelp="true" valueHelpRequest="onValueHelpPress" valueHelpOnly="true" id="id_Vendor" value="" width="50%" submit="onSubmitVenodr"></Input>
+                        <Text text="{POST>/VendorName}" id="vTextId"></Text>
+                    </Toolbar>
+                    <Toolbar class="InboundToolbarbrdr " id="id_ScanToolbar">
+                        <HBox>
+                            <Switch state="true" id="id_scanid" class="Inbound_switchToggle" customTextOn="{i18n>Label15}" customTextOff="{i18n>Label16}" change="onSwitchChange"></Switch>
+                        </HBox>
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <HBox visible="{VISI>/QRCode}">
+                            <Label text="{i18n>Label2}" design="Bold" class="sapUiSmallMarginTop" id="id_lablescan" visible="true"></Label>
+                            <!--<Button width="4rem" icon="sap-icon://bar-code" press="onScanBarcode"></Button>	-->
+                            <!--Added
+							by Avinash-->
+                            <Button icon="sap-icon://bar-code" type="Emphasized" id="id_barcodescan" press="onScanQRValue" tooltip="{i18n>Scanner}" visible="true" />
+                            <!--End
+							of Added-->
+                            <!--<ndc:BarcodeScannerButton id="BarCodeScanner" scanFail="fnBarcodeFailed" scanSuccess="onScanBarcode" tooltip="{i18n>Scanner}"/>-->
+                        </HBox>
+                        <Input class="" placeholder="{i18n>Label121}" id="id_InManual" valueHelpRequest="onValueHelpPress" visible="{parts: [{path: 'VISI>/Manual'}], formatter: '.Formatter.fnNonCFM'}" maxLength="18" />
+                        <MultiInput placeholder="{i18n>Material}" visible="{parts: [{path: 'VISI>/Manual'}], formatter: '.Formatter.fnCFM'}" id="id_InManualCFM" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="fnCfmMatHelp"></MultiInput>
+                        <Input placeholder="{i18n>WBItem}" id="id_WbIdItem" visible="" maxLength="5"></Input>
+                    </Toolbar>
+                    <Toolbar visible="{VISI>/Manual}" class="InboundToolbarbrdr">
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Text text="{POST>/MatnrDesc}" id="id_MatnrDesc"></Text>
+                    </Toolbar>
+                    <Toolbar visible="{VISI>/Manual}" class="InboundToolbarbrdr sapUiTinyMarginTop" id="id_ToolbarManual">
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button text="{i18n>Text5}" press="onPressManualQROK" class="Inbound_BtnClr"></Button>
+                        <Button text="{i18n>Text6}" press="onPressClear" class="InboundClearButton"></Button>
+                    </Toolbar>
+                    <!--code
+					added by kirubakaran for brazil plant on 12.08.2020 to show Purchase order in
+					manual screen-->
+                    <VBox visible="{VISI>/Manual}">
+                        <List growing="false" id="visibleListId" items="{POLIST>/}" visible="false">
+                            <items class="">
+                                <CustomListItem>
+                                    <content>
+                                        <l:Grid defaultSpan="L12 M12 S12">
+                                            <l:content>
+                                                <Panel class="Inbound_Panel InboundPanelContent">
+                                                    <content>
+                                                        <VBox>
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>Material}"></Label>
+                                                                <Title text="{POLIST>Matnr} - {POLIST>Maktx}"></Title>
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/TransferProperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>IssueBatch}"></Label>
+                                                                <Text text="{POLIST>Charg}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/NotaProperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>Qty}"></Label>
+                                                                <Text text="{POLIST>Menge}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/VendorIEProperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>VendorIEform}"></Label>
+                                                                <Text text="{POLIST>IeformNo}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/Spotproperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>ItemNo}"></Label>
+                                                                <Text text="{parts:[{path:'POLIST>Ebelp'},{path:'POLIST>Posnr'}],formatter:'Formatter.PODelivery'}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/CMSProperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>CMS_Contract}"></Label>
+                                                                <Text text="{POLIST>UNSEZ}"></Text>
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/CMSProperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>Batch}"></Label>
+                                                                <Text text="{POLIST>Charg}"></Text>
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                    </content>
+                                                    <layoutData>
+                                                        <l:GridData span="L6 M6 S6" />
+                                                    </layoutData>
+                                                </Panel>
+                                                <Panel class="Inbound_Panel">
+                                                    <content>
+                                                        <VBox visible="{oViewModel>/Spotproperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>PONumber}"></Label>
+                                                                <Text text="{parts:[{path:'POLIST>Ebeln'},{path:'POLIST>Vbeln'}],formatter:'Formatter.PODelivery'}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox>
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>NotaFiscalNo}"></Label>
+                                                                <Text text="{POLIST>NF_NUMBER}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox>
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>NotaFiscalQty}"></Label>
+                                                                <Text text="{POLIST>NF_QUANTITY}" />
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox>
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>vendorNo}"></Label>
+                                                                <Text text="{POLIST>Vendor} - {POLIST>Vname}"></Text>
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                        <VBox visible="{oViewModel>/BagProperty}">
+                                                            <items>
+                                                                <Label design="Bold" text="{i18n>NoOfBags}"></Label>
+                                                                <Text text="{POLIST>NO_BAGS}"></Text>
+                                                            </items>
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </VBox>
+                                                    </content>
+                                                    <layoutData>
+                                                        <l:GridData span="L6 M6 S6" />
+                                                    </layoutData>
+                                                </Panel>
+                                            </l:content>
+                                        </l:Grid>
+                                    </content>
+                                </CustomListItem>
+                            </items>
+                        </List>
+                    </VBox>
+                    <!--code
+					ended by kirubakaran for brazil plant on 12.08.2020 to show Purchase order in
+					manual screen-->
+                </content>
+            </Panel>
+            <f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" class="Inbound_SimpleForm" visible="{VISI>/QRCode}">
+                <f:content>
+                    <!-- Orbit change start-->
+                    <Label text="{i18n>WbId}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" visible="false" textAlign="Left"></Label>
+                    <HBox visible="false">
+                        <Input placeholder="{i18n>WbId}" value="{POST>/Wbid}" id="id_WbidNo" submit="fnValidateWbID" change="fnValidateWbID" width="100%" class="sapUiSmallMarginEnd" />
+                        <!--<ndc:BarcodeScannerButton id="Id_ScanWbId" scanFail="fnBarcodeFailed" scanSuccess="onScanWbId" tooltip="{i18n>ScanWB}"/>-->
+                        <Button icon="sap-icon://bar-code" id="Id_ScanWbId" type="Emphasized" press="onScanWbId" tooltip="{i18n>ScanWB}" />
+                    </HBox>
+                    <Label text="{i18n>Delivery}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" visible="{/ColumnsItems/0/visible}" textAlign="Left"></Label>
+                    <HBox visible="{/ColumnsItems/0/visible}">
+                        <Input placeholder="{i18n>Delivery}" value="{POST>/Challan}" id="id_Delivery" submit="onSubmitDelivery" change="onSubmitDelivery" class="sapUiSmallMarginEnd" />
+                        <!--<ndc:BarcodeScannerButton id="Id_ScanDelivery" scanFail="fnBarcodeFailed" scanSuccess="onScanDelivery"/>-->
+                        <Button icon="sap-icon://bar-code" id="Id_ScanDelivery" type="Emphasized" press="onScanDelivery" tooltip="{i18n>ScanDel}" />
+                    </HBox>
+                    <!-- Trip process senegal/Ghana grains-->
+                    <Label text="{i18n>WbIdlabel}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" id="id_LblWbId" textAlign="Left" visible="false"></Label>
+                    <Input enabled="false" value="{POST>/IvWbid}" id="id_InWbId" visible="false"></Input>
+                    <Label text="{i18n>WBItem}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" id="id_LblWbItem" textAlign="Left" visible="false"></Label>
+                    <Input enabled="false" value="{POST>/IvItem}" id="id_InWbItem" visible="false"></Input>
+                    <!-- Trip process for cameron rice-->
+                    <Label text="{i18n>DONo}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" id="id_LblDoNo" textAlign="Left" visible="false"></Label>
+                    <Input enabled="false" value="{POST>/DONo}" id="id_InDoNo" visible="false"></Input>
+                    <!-- Orbit change end -->
+                    <Label text="{i18n>Title1}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" id="id_LblProcess" textAlign="Left"></Label>
+                    <ComboBox items="{F4Model>/results/0/F4ProcessNav/results}" class="" enabled="{POST>/Enable}" selectedKey="{POST>/Wtype}" selectionChange="onChangeProcess" id="id_ComboProcess">
+                        <core:Item key="{F4Model>SeqNo}" text="{F4Model>Name1}" />
+                    </ComboBox>
+                    <Label text="{i18n>Label4}" design="Bold" required="" class="sapUiSmallMarginTop Inbound_SimpleForm" textAlign="Left"></Label>
+                    
+                    <Input placeholder="{i18n>Label4}" liveChange="onLiveChange" class="" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" id="id_InPlant" value="{POST>/Werks} - {POST>/Name1}" enabled="{POST>/Enable}" />
+                    <Label text="{i18n>Label5}" design="Bold" required="" class="sapUiSmallMarginTop" textAlign="Left"></Label>
+                    <Input placeholder="{i18n>Label5}" liveChange="onValueHelpPress" class="" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" id="id_InGate" value="{POST>/Gate} - {POST>/Wbname}" enabled="{POST>/Enable}" />
+                
+                    <Label text="{i18n>MatDoc}" id="id_InMatDocLabel" design="Bold" required="" class="sapUiSmallMarginTop" textAlign="Left"></Label>
+                    <MultiInput placeholder="{i18n>MatDoc}" tokenUpdate="fnDeleteMatDoc" visible="false" id="id_InMatDoc" showValueHelp="false" showSuggestion="true"></MultiInput>
+                    <Label text="{i18n>Remarks}" id="id_InRemarksLabel" design="Bold" required="" class="sapUiSmallMarginTop" textAlign="Left"></Label>
+                    <Input placeholder="{i18n>Remarks}" visible="false" id="id_InRemarks" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onVHremarks"></Input>
+                    <Label text="{i18n>Label6}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left" />
+                    <FlexBox width="100%">
+                        <Input maxLength="16" placeholder="{i18n>Label6}" class="" value="{POST>/Vehno}" required="" id="id_VehiNo" submit="onSubmitVehicleNo" liveChange="onChangeVehicle" enabled="{POST>/Enable}" valueState="None" valueStateText="None">
+                            <layoutData>
+                                <FlexItemData growFactor="40" />
+                            </layoutData>
+                        </Input>
+                        <Button id="vehNoCaptureID" icon="{path:'',formatter:'.Formatter.Icon'}" type="Transparent" press="onCaptureVehicleImage" visible="false" />
+                    </FlexBox>
+                   
+                    <Label text="{i18n>Label7}" design="Bold" required="" class="sapUiSmallMarginTop" textAlign="Left"></Label>
+                    <Input maxLength="15" liveChange="fnVehiceTypeChange" change="onChange" placeholder="{i18n>Label7}" value="{POST>/Vehtyp}" enabled="{POST>/Enable}" id="id_VehicleTy" visible="true"></Input>
+                  
+                    <!-- Added TruckType ComboBox by Srinivas on 01/07/2025 for spot Purchase -->
+                    <Label text="{i18n>Label7}" design="Bold" required="" class="sapUiSmallMarginTop" textAlign="Left"></Label>
+                    <ComboBox id="id_VehicleTyCombo" change="handleChange" placeholder="{i18n>Label7}" items="{path: 'TruckTypeComboModel>/'}" visible="false">
+                        <core:Item key="{TruckTypeComboModel>Trucktyp}" text="{TruckTypeComboModel>Trucktyp}" />
+                    </ComboBox>
+                   
+                    <Label text="{i18n>Label8}" design="Bold" class="sapUiSmallMarginTop" required="" textAlign="Left"></Label>
+                    <Input id="id_InDriver" type="Text" placeholder="{i18n>Label8}" class="" value="{POST>/Dname}" liveChange="fnDrivernameChange" change="onChange" enabled="{POST>/Enable}" />
+                    <Label text="{i18n>Label13}" design="Bold" class="sapUiSmallMarginTop" textAlign="Left"></Label>
+                    <Input placeholder="{i18n>Label13}" liveChange="onValueHelpPress" class="" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" id="id_InTransport" enabled="{POST>/Enable}" value="{POST>/Lifnr} - {POST>/LifnrDesc}" />
+                    <Label text="{i18n>Label9}" design="Bold" class="sapUiSmallMarginTop" required="" textAlign="Left"></Label>
+                    <Input id="id_InDriverMob" type="Number" placeholder="{i18n>Label9}" class="" value="{POST>/DriverMob}" liveChange="fnDriverMob" enabled="{POST>/Enable}" />
+                    <!--new
+					rgp integration start-->
+                    <Label text="{i18n>RefNo}" design="Bold" class="sapUiSmallMarginTop" required="" textAlign="Left"></Label>
+                    <FlexBox width="100%" id="id_InRefNo" visible="false">
+                        <Input maxLength="33" id="id_InRefNoValue" class="" value="{POST>/Config16}" required="" editable="false" valueState="None" valueStateText="None">
+                            <layoutData>
+                                <FlexItemData growFactor="40" />
+                            </layoutData>
+                        </Input>
+                        <Button icon="sap-icon://bar-code" tooltip="{i18n>RefNo}" class="sapUiTinyMarginBegin" type="Emphasized" press="onScanQRValue" />
+                        <Button icon="sap-icon://refresh" tooltip="{i18n>reset}" class="sapUiTinyMarginBegin" type="Reject" press="onresetRefNo" />
+                    </FlexBox>
+                    <!--new
+					rgp integration End-->
+                    <Label text="{i18n>DriverNo}" design="Bold" class="sapUiSmallMarginTop" required="" textAlign="Left"></Label>
+                    <Input id="id_driverno" placeholder="{i18n>Driverno}" class="" value="{POST>/DriverNo}" liveChange="onValueHelpPress" visible="false" />
+                    <Label text="{i18n>ParkingYardNo}" design="Bold" class="sapUiSmallMarginTop"></Label>
+					<Input placeholder="{i18n>ParkingYardNo}" class="" value="{POST>/ParkingYard}" id = "id_ParkingYard"/>
+                </f:content>
+            </f:SimpleForm>
+            <!--<html:h1/>-->
+            <Toolbar class="InboundToolbarbrdr ">
+                <HBox visible="{VISI>/QRCode}" class="sapUiSmallMarginBegin">
+                    <Label text="{i18n>Reprint}" design="Bold" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
+                    <Button icon="sap-icon://print" press="onClickReprint"></Button>
+                </HBox>
+                <ToolbarSpacer></ToolbarSpacer>
+                <HBox visible="{VISI>/QRCode}" class="sapUiSmallMarginEnd">
+                    <Label text="{i18n>Label1}" design="Bold" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
+                    <Button icon="{path:'',formatter:'.Formatter.Icon'}" type="Transparent" press="onCaptureCamera"></Button>
+                </HBox>
+                <!--<ToolbarSpacer></ToolbarSpacer>-->
+            </Toolbar>
+        </content>
+        <footer>
+            <Toolbar>
+                <Button text="{i18n>Text3}" class="Inbound_BtnClr" id="id_POBtn" press="onOpenPOList"></Button>
+                <ToolbarSpacer></ToolbarSpacer>
+                <!--<Button id="id_PrintBtn" icon="sap-icon://print" press="onPressPrint" visible="false" class="Inbound_BtnClr"></Button>-->
+                <Button text="{i18n>Label14}" id = "id_TruckSave" press="onSave" class="Inbound_BtnClr" visible="{VISI>/QRCode}"></Button>
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

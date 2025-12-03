@@ -1,0 +1,96 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.WBQTY_Update"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc" xmlns:layout="sap.ui.layout"
+	xmlns:m="sap.ui.commons.layout">
+	<!-- Gate Entry-->
+	<Page id="id_GateEntry" enableScrolling="true" class="">
+		<customHeader>
+			<Bar class="Inbound_Bar1">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Label text="{i18n>TitleOCR}" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://synchronize" class="InboundBtnIcon" toolTip="{i18n>Refresh}" press="onResetPage"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Toolbar class="InboundToolbarbrdr" visible="true" height="6.5rem">
+				<ToolbarSpacer></ToolbarSpacer>
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+				adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" class="Inbound_SimpleForm">
+				<f:content>
+					<Label text="{i18n>Label3}" design="Bold"/>
+					<Input value="{oWBModel>/weighBridge}" required="true" maxLength="16" showValueHelp="true" valueHelpOnly="true"
+						valueHelpRequest="onValueHelpPress" submit="fnWBGetData">
+						<layoutData>
+									<layout:GridData span="XL3 L3 M4 S4"/>
+								</layoutData>
+								</Input>
+								
+						<Button icon="sap-icon://download" type="Transparent" tooltip="{i18n>downloadbtn}" press="fnGetAttachDetails"/>
+					<Label/>
+					<Text/>
+					<Label/>
+					<Text text="{i18n>ExistingValue}"/>
+					<Text text="{i18n>UpdatedValue}"/>
+					<!--	<HBox>
+						<VBox >
+							<Input value="{i18n>ExistingValue}" editable="false"  class="myclass"/>
+						</VBox>
+						<VBox class="sapUiSmallMarginBegin">
+							<Input value="{i18n>UpdatedValue}" wrapping="true" editable="false" class="myclass"/>
+						</VBox>
+				
+					</HBox>-->
+					<Label text="{i18n>Grossweigh}" design="Bold"/>
+					<HBox>
+						<VBox>
+							<Input value="{oWBModel>/aWB_Data/Brgew}" editable="false"/>
+						</VBox>
+						<VBox class="sapUiSmallMarginBegin">
+							<Input value="{oWBModel>/uGrossWeight}" wrapping="true" editable="true" maxLength="100" liveChange="onvalidateNumber"/>
+						</VBox>
+					</HBox>
+					<Label text="{i18n>Tareweigh}" design="Bold"/>
+					<HBox>
+						<VBox>
+							<Input value="{oWBModel>/aWB_Data/Trwgt}" editable="false"/>
+						</VBox>
+						<VBox class="sapUiSmallMarginBegin">
+							<Input value="{oWBModel>/uTareweight}" editable="true" maxLength="100" type="Number" liveChange="onvalidateNumber"/>
+						</VBox>
+						<!--	<VBox class="sapUiSmallMarginBegin">
+							<Input value="{oWBModel>/aWB_Data/Uom}" editable="false" width="2rem"/>
+						</VBox>-->
+					</HBox>
+					<Label text="{i18n>Netweigh}" design="Bold"/>
+					<HBox>
+						<VBox>
+							<Input value="{oWBModel>/aWB_Data/Ntgew}" editable="false"/>
+						</VBox>
+						<VBox class="sapUiSmallMarginBegin">
+							<Input value="{oWBModel>/uNetWeight}" editable="false" maxLength="100" type="Number" liveChange="onvalidateNumber"/>
+						</VBox>
+						<!--	<VBox class="sapUiSmallMarginBegin">
+							<Input value="{oWBModel>/aWB_Data/Uom}" editable="false" width="2rem"/>
+						</VBox>-->
+					</HBox>
+				</f:content>
+			</f:SimpleForm>
+			<!--<html:h1/>-->
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<!--<Button id="id_PrintBtn" icon="sap-icon://print" press="onPressPrint" visible="false" class="Inbound_BtnClr" ></Button>-->
+				<Button text="{i18n>Label14}" press="onSaveData" class="Inbound_BtnClr" visible="{VISI>/QRCode}"></Button>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

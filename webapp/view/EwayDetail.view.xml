@@ -1,0 +1,155 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.EwayDetail"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<!-- Vehicle Assignment Detail-1-->
+	<App>
+		<pages>
+			<Page id="id_EwayDetail" class="page_bg" enableScrolling="true">
+				<customHeader>
+					<Bar class="Inbound_Bar1">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onNavBackEwayDet" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Label text="{i18n>QALAbleGen}" class="Inbound_Title" design="Bold"/>
+						</contentMiddle>
+						<contentRight></contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<VBox class="sapUiSmallMarginTopBottom">
+						<f:Form id="id_Form" editable="false">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+									emptySpanL="0" emptySpanM="0" emptySpanS="1" columnsXL="3" columnsL="3" columnsM="3" columnsS="2" singleContainerFullSize="false"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement label="{i18n>WbIdlabel}" class="cl_Bold">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/Wbid}" editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>VendorTrans}">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/Lifnr} - {JMQALableGenerateHeader>/0/LifnrName}"
+													editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>ProType}">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/Wtype}" editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+								<f:FormContainer >
+									<f:formElements>
+										<f:FormElement label="{i18n>Eway}" class="cl_Bold">
+											<f:fields>
+												<Input id="id_EwayID" class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateStatus>/CarteGrise}" editable="true" maxLength="16"
+													liveChange="fnLiveChangeEwayValidate" required="true"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>DriverName}" class="cl_Bold">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/Dname}" editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>RefNo}">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/Token}" editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+								<f:FormContainer >
+									<f:formElements>
+										<f:FormElement label="{i18n>EwayDate}">
+											<f:fields>
+												<DatePicker editable="true" id="id_ewaydate" placeholder="Enter Date" change="handleChangeDate" value="{JMQALableGenerateStatus>/Bmcnu}"
+													class="sapUiSizeCompact" displayFormat="dd.MM.yyyy" valueFormat="" required="true"/>
+												<!--<Input class="Input_PM sapUiSizeCompact" value="{JMEwayListBinding>/Token}" editable="false"></Input>-->
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Label9}">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/DriverMob}" editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>VehTyp}">
+											<f:fields>
+												<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateHeader>/0/Vehtyp}" editable="false"></Input>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</VBox>
+					<VBox>
+						<List id="" visible="true" showNoData="false" class="cl_ListHeader sapUiSmallMarginTop" growing="true" items="{JMQALableGenerateItem>/}">
+							<CustomListItem class="listitemCssSub sapUiTinyMarginTop">
+								<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12"
+									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4"
+									singleContainerFullSize="false" class="">
+									<f:content>
+										<core:Title class="cl_FormTitle"/>
+										<Label text="{i18n>WBItem}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Item}" editable="false"></Input>
+										<Label text="{i18n>Batch}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Batch}" required="true" maxLength="10"
+											liveChange="fnLiveChangeEwayValidate"></Input>
+										<Label text="{i18n>MatCount}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Dwerk}" maxLength="7"
+											liveChange="fnlivechangeOnlyNumber"></Input>		<!--Removed required="true" by Pavan on 26/03/2023-->
+										<core:Title class="cl_FormTitle"/>
+										<Label text="{i18n>Ebeln}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Ebeln}" editable="false"
+											visible="{path:'JMQALableGenerateItem>Ebeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+										<Label text="{i18n>Vbeln}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Vbeln}" editable="false"
+											visible="{path:'JMQALableGenerateItem>Vbeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+										<Label text="{i18n>EwayQty}" class="cl_font"/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Config1}" required="true" type="Number" change="fnValidateEwayQty"
+											submit="fnValidateEwayQty"></Input>
+										<!--liveChange="fnlivechangeOnlyNumber"-->
+										<Label text="{i18n>Caliber}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Remarks}" maxLength="50"></Input>
+										<core:Title class="cl_FormTitle"/>
+										<Label text="{i18n>Ebelp}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Ebelp}" editable="false"
+											visible="{path:'JMQALableGenerateItem>Ebeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+										<Label text="{i18n>Posnr}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Posnr}" editable="false"
+											visible="{path:'JMQALableGenerateItem>Vbeln',formatter:'ZGT_MM_INBOUND.model.formatter.fnVbelnVisible'}"></Input>
+										<Label text="{i18n>EwayUom}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Config4}" required="true" valueHelpOnly="true" showValueHelp="true"
+											valueHelpRequest="onUOMf4"></Input>
+										<core:Title class="cl_FormTitle"/>
+										<Label text="{i18n>Text21}" class="cl_font "/>
+										<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Matnr}" editable="false" tooltip="{JMQALableGenerateItem>Maktx}"></Input>
+										<Label text="{i18n>MatType}" required="true" class="cl_font "/>	<!--Added required="true" by Pavan on 29/03/2023-->
+										<Link text="{i18n>Matdetail}" class="cl_ColumnText cl_link sapUiTinyMarginTop" press="fnOpenPackingMaterialDetail"
+											tootip="{JMWsHeader>GrossPackMatWt}"></Link>
+										<!--<Input class="Input_PM sapUiSizeCompact" value="{JMQALableGenerateItem>Pmat2}" required="true" maxLength="30" valueHelpOnly="true"-->
+										<!--	showValueHelp="true" valueHelpRequest="onF4PackMatType"></Input>-->
+									</f:content>
+								</f:SimpleForm>
+							</CustomListItem>
+						</List>
+					</VBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<!--<Button text="{i18n>Reprint}" icon="sap-icon://print" press="fnReprintDialog" class="GRheaderBtn3 sapUiSizeCompact sapUiSmallMarginBegin"/>-->
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button text="{i18n>Check}" icon="sap-icon://complete" press="fncheck" class=" cl_iconWhite Inbound_BtnClr sapUiSizeCompact "/>
+						<Button text="{i18n>Submit}" icon="sap-icon://save" press="fnSubmitQALabel"
+							class="cl_iconWhite Inbound_BtnClr sapUiSizeCompact sapUiSmallMarginEnd"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

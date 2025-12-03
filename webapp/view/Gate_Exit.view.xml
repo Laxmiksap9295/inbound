@@ -1,0 +1,73 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.Gate_Exit"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page class="page_bg">
+				<customHeader>
+					<Bar class="Inbound_Bar1">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Label text="{i18n>Title11}" design="Bold" class="Inbound_Title"></Label>
+						</contentMiddle>
+						<!--added by dharma-->
+						<contentRight>
+							<!--Added by Avinash-->
+							<SearchField id="id_SearchFieldGE" liveChange="fnSearchRefId" class="sapUiSizeCompact" width="50%"/>
+							<!--End of Added-->
+							<Button icon="sap-icon://filter" press="onGateExitFilter" class="InboundBtnIcon"></Button>
+							<Button icon="sap-icon://settings" press="onSettings" class="InboundBtnIcon"></Button>
+						</contentRight>
+						<!--ended by dharma on 15-10-2020-->
+					</Bar>
+				</customHeader>
+				<content>
+					<Toolbar class="cl_UnloadTB">
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://bar-code" id="id_ScanBtn" press="fnScanWB" text="{i18n>Label2}"
+							class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>
+						<Button icon="sap-icon://clear-filter" id="id_ClearBtn" press="fnClearFilter" text="{i18n>ClFilter}"
+							class="GRheaderBtn1 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>
+					</Toolbar>
+					<Table id="id_gateexit2" items="{oExitModel>/GateExitNav/results}" class="newTableClass_CSQ" growing="true" growingScrollToLoad="false"
+						growingThreshold="100">
+						<columns>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="9rem" id="Label3">
+								<Label text="{i18n>Label3}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Label6">
+								<Label text="{i18n>Label6}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Label9">
+								<Label text="{i18n>Label9}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<!--	added by dharma 16-0-2020-->
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Label5">
+								<Label text="{i18n>Label5}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="GateName">
+								<Label text="{i18n>GateName}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Batch" visible="false">
+								<Label text="{i18n>Batch}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="onGateItemPress">
+								<cells>
+									<Text text="{oExitModel>Wbid}"></Text>
+									<Text text="{oExitModel>Vehno}"></Text>
+									<Text text="{oExitModel>DriverMob}"></Text>
+									<Text text="{oExitModel>Gate}"></Text>
+									<Text text="{oExitModel>GateName}"></Text>
+									<Text text="{oExitModel>Batch}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

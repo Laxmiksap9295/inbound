@@ -1,0 +1,131 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.Unloading_Confirm"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page class="page_bg">
+				<customHeader>
+					<Bar class="Inbound_Bar1">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Label text="{i18n>Title15}" design="Bold" class="Inbound_Title"></Label>
+						</contentMiddle>
+						<contentRight>
+							<!--Added by Avinash-->
+							<SearchField id="id_SearchField" liveChange="fnSearchRefId" class="sapUiSizeCompact" width="50%"/>
+							<!--End of Added-->
+							<Button icon="sap-icon://filter" press="onPressFilter" class="InboundBtnIcon"></Button>
+							<Button icon="sap-icon://settings" press="onSettings" class="InboundBtnIcon"></Button>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<Toolbar class="cl_UnloadTB">
+						<Button icon="sap-icon://print" id="id_ReprintBtn" press="fnReprintDialog" text="{i18n>Reprint}"
+							class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBegin"></Button>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://bar-code" id="id_ScanBtn" press="fnScanWB" text="{i18n>Label2}"
+							class="GRheaderBtn3 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>
+						<Button icon="sap-icon://clear-filter" id="id_ClearBtn" press="fnClearFilter" text="{i18n>ClFilter}"
+							class="GRheaderBtn1 sapUiSizeCompact sapUiTinyMarginBeginEnd"></Button>
+					</Toolbar>
+					<Table id="id_unload" items="{oUnloadModel>/QualWbidNav/results}" class="newTableClass_CSQ" updateFinished="fnTableUpdate" growing="true"
+						growingScrollToLoad="false" growingThreshold="100">
+						<columns>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left" width="9rem" id="Wbid">
+								<Label text="{i18n>Label3}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Vehno">
+								<Label text="{i18n>Label6}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="vendorBrzNo" visible="false">
+								<Label text="{i18n>vendorName}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="CmsBrzno" visible="false">
+								<Label text="{i18n>cms_contract}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Matnr" visible="true">
+								<Label text="{i18n>Label30}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--Added by Avinash-->
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="id_Maktx" visible="false">
+								<Label text="{i18n>Maktx}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="id_PRLot" visible="false">
+								<Label text="{i18n>PR_LOT}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<!--EOC -->
+							<!--Added by Avinash - Ghana Changes-->
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="id_PoutQty" visible="false">
+								<Label text="{i18n>PoutQty}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="id_PoutQtyBags" visible="false">
+								<Label text="{i18n>TotalBag}" design="Bold" class="tableheaderClass_CSQ"></Label>
+							</Column>
+							<!--End of Added-->
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" id="Item" visible="false">
+								<Label text="{i18n>Column8}" design="Bold" class="Unload_InputLbl"></Label>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" id="Dname" visible="false">
+								<Label text="{i18n>Column11}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" id="DriverMob" visible="false">
+								<Label text="{i18n>Column10}" design="Bold" class="Unload_InputLbl"/>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Gate" visible="false">
+								<Label text="{i18n>Label5}" design="Bold" class="Unload_InputLbl"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="GateName" visible="false">
+								<Label text="{i18n>GateName}" design="Bold" class="Unload_InputLbl"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Status" visible="false">
+								<Label text="{i18n>Status}" design="Bold" class="Unload_InputLbl"></Label>
+							</Column>
+							<!--Added for Turkey Projct-->
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Eway" visible="true">
+								<Label text="{i18n>Eway}" design="Bold" class="Unload_InputLbl Unload_InputLbl1"></Label>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Batch" visible="true">
+								<Label text="{i18n>Batch}" design="Bold" class="Unload_InputLbl Unload_InputLbl1"></Label>
+							</Column>
+						<!--	<Column width="3rem" visible="true">
+								<Label ></Label>
+							</Column>-->
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="onPressLoadItem">
+								<cells>
+									<Text text="{oUnloadModel>Wbid}"></Text>
+									<Text text="{oUnloadModel>Vehno}"></Text>
+									<Text text="{oUnloadModel>VEND_NAME}"></Text>
+									<Text text="{oUnloadModel>UNSEZ}"></Text>
+									<Text text="{oUnloadModel>Matnr}"></Text>
+									<Text text="{oUnloadModel>Maktx}"></Text>
+									<Text text="{oUnloadModel>PR_LOT}"></Text>
+									<Text text="{oUnloadModel>LoadWt}"></Text>
+									<Text text="{oUnloadModel>TotalBag}"></Text>
+									<Text text="{oUnloadModel>Item}"></Text>
+									<Text text="{oUnloadModel>Dname}"></Text>
+									<Text text="{oUnloadModel>DriverMob}"></Text>
+									<Text text="{oUnloadModel>Gate}"></Text>
+									<Text text="{oUnloadModel>GateName}"></Text>
+									<!--<Text-->
+									<!--	text="{= ${oUnloadModel>Werks} !== '2901' ? '' : ${oUnloadModel>Unload_Start} !== 'X' ? ${oUnloadModel>Wtype} !== 'TRIP' ? ' ' :'Yet to Start' :'InProgress'}"></Text>-->
+									<Text
+										text="{= ${oUnloadModel>Werks} !== '2901' ? '' : ${oUnloadModel>Unload_Start} !== 'X' ? ${oUnloadModel>Wtype} !== 'TRIP' ? ' ' :'{i18n>NotYetDispatched}' :'{i18n>InProgress}'}"></Text>
+									<Text text="{oUnloadModel>EwayBill}"></Text>
+									<Text text="{oUnloadModel>Batch}"></Text>
+									<!--<Text text="{= ${oUnloadModel>Werks} !== '2901' ? '' : ${oUnloadModel>Unload_Start} !== 'X' ? 'Yet to Start ' :'InProgress'}"></Text>-->
+									<!--<Text text="{= ${oUnloadModel>Werks} !== '2901' ? '' : ${oUnloadModel>Unload_Start} !== 'X' ? 'InProgress' : ${oUnloadModel>Unload_Start} == 'Y' ? '' :'Yet to Start'}"></Text>-->
+									<!--<Text text="{parts:[{path:'oUnloadModel>Ebeln'},{path:'oUnloadModel>Ebeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"></Text>-->
+						<!--	-->
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

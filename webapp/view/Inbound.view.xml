@@ -1,0 +1,42 @@
+<mvc:View	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.Inbound"
+			xmlns:html="http://www.w3.org/1999/xhtml" 	xmlns:f="sap.ui.layout.form" >
+	<Page enableScrolling="true" class="page_bg">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>AppTitle}" class="Inbound_Title" design="Bold"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<IconTabBar  select="onSelectTabBar" class="sapUiResponsiveContentPadding InboundIconTabBar">
+				<items>
+					<IconTabFilter icon="sap-icon://inventory" class="Inbound_IconFilter" text="{DIRECT>/results/0/F4DirectionNav/results/0/Ddtext}" 
+									key="{DIRECT>/results/0/F4DirectionNav/results/0/DomvalueL}">
+						<content>
+							<!--<ScrollContainer horizontal="true" visible="true" vertical="true" width="100%" height="85%">-->
+								<Panel id ="id_Panel" >
+									<content>
+										<List items="{ACT>/results}" class="Inbound_ListItem">
+											<items>
+												<StandardListItem title="{ACT>Activity}" icon="{ACT>Icon}" class="Inbound_ListItem" type="Active"
+												press="fnProcessPress"></StandardListItem>
+											</items>
+										</List>
+									</content>
+								</Panel>
+							<!--</ScrollContainer>-->
+						</content>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://shipping-status" class="cl_gateentry" text="{DIRECT>/results/0/F4DirectionNav/results/1/Ddtext}" 
+									key="{DIRECT>/results/0/F4DirectionNav/results/1/DomvalueL}"/>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Toolbar>
+			
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

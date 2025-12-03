@@ -1,0 +1,98 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZGT_MM_INBOUND.controller.PreQuality_Check"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:m="sap.m">
+	<App>
+		<pages>
+			<Page id="id_prequality" class="page_bg">
+				<customHeader>
+					<Bar class="Inbound_Bar1">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onNavBack" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Label text="{i18n>Title8}" class="Inbound_Title" design="Bold"/>
+						</contentMiddle>
+						<contentRight>
+							<Button icon="sap-icon://settings" press="onSettings" class="InboundBtnIcon"></Button>
+						</contentRight>
+					</Bar>
+				</customHeader>
+			
+				<content>
+					<Table id="pre_qual" items="{oQualityModel>/QualWbidNav/results}" class="newTableClass_CSQ" growing="true" >
+						<columns>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" width="9rem" id="Wbid">
+								<Label text="{i18n>Label3}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--Added for Turkey Project-->
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="id_wbitem">
+								<Label text="{i18n>Column8}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Matnr">
+								<Label text="{i18n>Label30}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" id="Vehno">
+								<Label text="{i18n>Label6}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="Item">-->
+							<!--	<Label text="{i18n>Column8}" design="Bold" class="tableheaderClass_CSQ"></Label>-->
+							<!--</Column>-->
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="Dname">
+								<Label text="{i18n>Column11}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="DriverMob">
+								<Label text="{i18n>Column10}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--Added for Turkey Project-->
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="id_PONo">
+								<Label text="{i18n>Ebeln}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="id_Poitem">
+								<Label text="{i18n>Ebelp}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--Added by Pavan on 04/04/2023 Start-->
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="id_DlNo">
+								<Label text="{i18n>Vbeln}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="id_DLitem">
+								<Label text="{i18n>Posnr}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--Added by Pavan on 04/04/2023 End-->
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="false" id="id_EwayNo">
+								<Label text="{i18n>Eway}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+							<!--<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" visible="true">-->
+							<!--	<Label text="{i18n>Werks}" design="Bold" class="tableheaderClass_CSQ"/>-->
+							<!--</Column>-->
+							<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center" visible="false" id="id_batch">
+								<Label text="{i18n>Batch}" design="Bold" class="tableheaderClass_CSQ"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="onPressQualItem">
+								<cells>
+									<Text text="{oQualityModel>Wbid}"></Text>
+									<Text text="{oQualityModel>Item}"></Text>
+									<Text text="{oQualityModel>Matnr}"></Text>
+									<Text text="{oQualityModel>Vehno}"></Text>
+									<!--<Text text="{oQualityModel>Item}"></Text>-->
+									<Text text="{oQualityModel>Dname}"></Text>
+									<Text text="{oQualityModel>DriverMob}"></Text>
+									<Text text="{oQualityModel>Ebeln}"></Text>
+									<Text text="{oQualityModel>Ebelp}"></Text>
+									<!--Added by Pavan on 04/04/2023 Start-->
+									<Text text="{oQualityModel>Vbeln}"></Text>	
+									<Text text="{oQualityModel>Posnr}"></Text>
+									<!--Added by Pavan on 04/04/2023 End-->
+									<Text text="{oQualityModel>UNSEZ}"></Text>
+									<Text text="{oQualityModel>Batch}"></Text>
+									<!--<Text text="{oQualityModel>Eway}"></Text>-->
+									<!--<Text text="{parts:[{path:'oQualityModel>Ebeln'},{path:'oQualityModel>Ebeln'}],formatter:'ZGT_MM_INBOUND.Util.Formatter.PO'}"></Text>-->
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
